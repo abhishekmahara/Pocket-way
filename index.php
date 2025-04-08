@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pocket Trip - Explore Public Transport</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-    <!-- Navbar with search -->
-    <nav class="navbar">
-        <div id="logo">
-        <img src="img\logoo.png" alt="PocketWay">
-    </div>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search destinations...">
-        </div>
-    </nav>
+<?php
+include 'header.php';
+?>
+
 
     <main>
         <!-- Popular Destinations Section -->
@@ -57,15 +43,7 @@
             </div>
         </section>
     </main>
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2025 Pocket Trip. All rights reserved.</p>
-            <p>Created by Your Name | Contact: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-        </div>
-    </footer>
+<?php   
+include 'footer.php';
+?>
 
-
-    <script src="script.js"></script>
-</body>
-</html> 
