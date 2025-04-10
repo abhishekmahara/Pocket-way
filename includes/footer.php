@@ -1,15 +1,37 @@
-
 <!-- Footer -->
+<style>
+  .footer-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
 
+  .footer-link:visited {
+    color: #ffffff;
+  }
 
+  .footer-link:hover {
+    color: #ffc107;
+   
+  }
 
-<script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<!-- Final Matching Footer -->
+  .social-icon {
+    color: #ffffff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+
+  .social-icon:hover {
+    color: #ffc107;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
 <footer style="background-color: #007B7F;" class="text-white pt-5 pb-4">
   <div class="container">
     <div class="row text-center text-md-start">
-      
+
       <!-- About Section -->
       <div class="col-md-4 mb-4">
         <h5 class="fw-bold" style="color: #F9A825;">PocketWay</h5>
@@ -49,5 +71,3 @@
   </div>
 </footer>
 <!-- End of Footer -->
- <body>
-</html>

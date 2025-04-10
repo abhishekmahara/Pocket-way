@@ -19,7 +19,7 @@
             margin-right: 1rem;
         }
         .nav-link:hover {
-            color: #0056b3 !important;
+            color: #ffc107 !important;
         }
         .navbar {
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -68,4 +68,3 @@
     <!-- Bootstrap Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
