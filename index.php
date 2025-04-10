@@ -68,6 +68,14 @@
       color: var(--primary-color);
     }
 
+    .card img{
+      width: 100%; 
+      height: 200px; 
+      object-fit: cover; 
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
   </style>
 
   <!-- Hero Section with Form -->
@@ -194,7 +202,7 @@
             <!-- Article 3 -->
             <div class="col-md-4">
                 <div class="card card-custom h-100">
-                    <img src="https://source.unsplash.com/400x250/?uttarakhand,bus" class="card-img-top" alt="Bus Travel Tips">
+                    <img src="https://images.unsplash.com/photo-1584127088015-3b0be0722c66?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c29sbyUyMHdpdGglMjBpbmRpYW4lMjBidXN8ZW58MHx8MHx8fDA%3D" class="card-img-top" alt="Bus Travel Tips">
                     <div class="card-body">
                         <h5 class="card-title">How to Travel Cheaply by Bus</h5>
                         <p class="card-text">Learn how to use public transport smartly with our budget travel guide.</p>
@@ -205,7 +213,7 @@
             <!-- Article 4 -->
             <div class="col-md-4">
                 <div class="card card-custom h-100">
-                    <img src="https://source.unsplash.com/400x250/?uttarakhand,monuments" class="card-img-top" alt="Heritage">
+                    <img src="https://images.unsplash.com/photo-1709623868300-e3b78cad10e1?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXR0YXJha2hhbmR8ZW58MHx8MHx8fDA%3D" class="card-img-top" alt="Heritage">
                     <div class="card-body">
                         <h5 class="card-title">Historic Sites to Visit</h5>
                         <p class="card-text">Explore temples, forts, and spiritual places that define Uttarakhand's rich culture.</p>
@@ -216,7 +224,7 @@
             <!-- Article 5 -->
             <div class="col-md-4">
                 <div class="card card-custom h-100">
-                    <img src="https://source.unsplash.com/400x250/?uttarakhand,travel" class="card-img-top" alt="Solo Travel">
+                    <img src="https://images.unsplash.com/photo-1522506209496-4536d9020ec4?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c29sbyUyMHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D" class="card-img-top" alt="Solo Travel">
                     <div class="card-body">
                         <h5 class="card-title">Solo Travel in Uttarakhand</h5>
                         <p class="card-text">Is it safe? Where to go? Tips for solo travelers looking to explore the unknown.</p>
@@ -227,7 +235,7 @@
             <!-- Article 6 -->
             <div class="col-md-4">
                 <div class="card card-custom h-100">
-                    <img src="https://source.unsplash.com/400x250/?uttarakhand,nature" class="card-img-top" alt="Nature Spots">
+                    <img src="https://images.unsplash.com/photo-1720679307115-eac5be1f777b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fFBlYWNlZnVsJTIwTmF0dXJlJTIwRXNjYXBlcyUyMHV0dGFyYWtoYW5kfGVufDB8fDB8fHww" class="card-img-top" alt="Nature Spots">
                     <div class="card-body">
                         <h5 class="card-title">Peaceful Nature Escapes</h5>
                         <p class="card-text">Find quiet corners of the hills—offbeat spots for nature lovers and photographers.</p>
