@@ -1,5 +1,3 @@
-
-
 <?php include 'includes/header.php'; ?>
 
 
@@ -39,7 +37,7 @@
 
     .form-select2 {
       max-width: 300px;
-      margin: 0.5rem auto;
+      
     }
 
     .select2-container .select2-selection--single {
@@ -56,12 +54,22 @@
       padding: 60px 0;
     }
 
-    .section-title {
+    .section-title {   
       font-size: 2rem;
       font-weight: 600;
       color: var(--primary-color);
       text-align: center;
       margin-bottom: 2rem;
+    }
+
+    .text-primary {    /* Read More Button  */
+    padding: 10px 20px;
+    background-color: #F9A825;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    color: black;
     }
 
     .card-title {
@@ -158,6 +166,7 @@
           </div>
           </div>
         </div>
+
         <div class="col-md-4 mb-4">
           <div class="card shadow-sm">
             <img src="assets/img/adi-kailash.jpg" class="card-img-top" alt=" Adi-kailash">
@@ -184,18 +193,18 @@
                     <div class="card-body">
                         <h5 class="card-title">Top 5 Treks in Uttarakhand</h5>
                         <p class="card-text">Discover thrilling treks like Kedarkantha and Valley of Flowers for your next adventure.</p>
-                        <a href="blog/fivetrek.php" class="text-primary">Read More →</a>
+                        <a href="blog/fivetrek.php" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>
             <!-- Article 2 -->
             <div class="col-md-4">
                 <div class="card card-custom h-100">
-                    <img src="https://source.unsplash.com/400x250/?uttarakhand,food" class="card-img-top" alt="Local Cuisine">
+                    <img src="assets\img\Bal Mithai.avif" class="card-img-top" alt="Local Cuisine">
                     <div class="card-body">
                         <h5 class="card-title">Local Foods You Must Try</h5>
-                        <p class="card-text">Savor delicacies like Aloo Ke Gutke and Bal Mithai while exploring the hills.</p>
-                        <a href="blog/localfood.php" class="text-primary">Read More →</a>
+                        <p class="card-text">Enjoy the taste of Aloo Ke Gutke and Bal Mithai while exploring the beautiful hills of Uttarakhand.</p>
+                        <a href="blog/localfood.php" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>
@@ -206,7 +215,7 @@
                     <div class="card-body">
                         <h5 class="card-title">How to Travel Cheaply by Bus</h5>
                         <p class="card-text">Learn how to use public transport smartly with our budget travel guide.</p>
-                        <a href="#" class="text-primary">Read More →</a>
+                        <a href="#" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>
@@ -217,7 +226,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Historic Sites to Visit</h5>
                         <p class="card-text">Explore temples, forts, and spiritual places that define Uttarakhand's rich culture.</p>
-                        <a href="#" class="text-primary">Read More →</a>
+                        <a href="#" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>
@@ -228,7 +237,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Solo Travel in Uttarakhand</h5>
                         <p class="card-text">Is it safe? Where to go? Tips for solo travelers looking to explore the unknown.</p>
-                        <a href="#" class="text-primary">Read More →</a>
+                        <a href="#" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>
@@ -237,9 +246,9 @@
                 <div class="card card-custom h-100">
                     <img src="https://images.unsplash.com/photo-1720679307115-eac5be1f777b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fFBlYWNlZnVsJTIwTmF0dXJlJTIwRXNjYXBlcyUyMHV0dGFyYWtoYW5kfGVufDB8fDB8fHww" class="card-img-top" alt="Nature Spots">
                     <div class="card-body">
-                        <h5 class="card-title">Peaceful Nature Escapes</h5>
+                        <h5 class="card-title">Must-See Landscapes in Uttarakhand</h5>
                         <p class="card-text">Find quiet corners of the hills—offbeat spots for nature lovers and photographers.</p>
-                        <a href="#" class="text-primary">Read More →</a>
+                        <a href="blog\natureview.php" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>

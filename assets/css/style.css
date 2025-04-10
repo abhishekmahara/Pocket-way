@@ -25,7 +25,7 @@ body {
 .destination-title {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  color: #0d6efd;
+  color: black;
   text-align: center;
 }
 
@@ -89,10 +89,3 @@ body {
   color: #555;
 }
 
-.card img{
-  width: 100%; /* Makes the image fill the width of the card */
-  height: 200px; /* Set a fixed height to ensure all images are equal */
-  object-fit: cover; /* Ensures image covers the area without distortion */
-  border-top-left-radius: 10px; /* Optional, for rounded corners */
-  border-top-right-radius: 10px;
-}
