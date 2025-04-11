@@ -15,6 +15,11 @@
    
   }
 
+  .logo {
+    width: 150px; 
+    height: auto; 
+  }
+
   .social-icon {
     color: #ffffff;
     font-size: 1.2rem;
@@ -34,8 +39,8 @@
 
       <!-- About Section -->
       <div class="col-md-4 mb-4">
-        <h5 class="fw-bold" style="color: #F9A825;">PocketWay</h5>
-        <p class="mb-0">Your smart companion for affordable travel in Uttarakhand using public transport. Save money, travel smart!</p>
+      <img src="assets/img/logoo.png" alt="Pocket" class="logo">
+      <p class="mb-0">Your smart companion for affordable travel in Uttarakhand using public transport. Save money, travel smart!</p>
       </div>
 
       <!-- Quick Links -->

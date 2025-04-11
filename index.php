@@ -84,6 +84,7 @@
       border-top-right-radius: 10px;
     }
 
+  
   </style>
 
   <!-- Hero Section with Form -->
@@ -216,6 +217,7 @@
                         <h5 class="card-title">How to Travel Cheaply by Bus</h5>
                         <p class="card-text">Learn how to use public transport smartly with our budget travel guide.</p>
                         <a href="blog/travelBus.php" class="text-primary">Read More </a>
+                        <a href="blog/cheaptravel.php" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>
@@ -244,10 +246,10 @@
             <!-- Article 6 -->
             <div class="col-md-4">
                 <div class="card card-custom h-100">
-                    <img src="https://images.unsplash.com/photo-1720679307115-eac5be1f777b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fFBlYWNlZnVsJTIwTmF0dXJlJTIwRXNjYXBlcyUyMHV0dGFyYWtoYW5kfGVufDB8fDB8fHww" class="card-img-top" alt="Nature Spots">
+                    <img src="https://plus.unsplash.com/premium_photo-1688645554172-d3aef5f837ce?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Nature Spots">
                     <div class="card-body">
                         <h5 class="card-title">Must-See Landscapes in Uttarakhand</h5>
-                        <p class="card-text">Find quiet corners of the hills—offbeat spots for nature lovers and photographers.</p>
+                        <p class="card-text">Explore Uttarakhand’s iconic landscapes, highlighting the region's natural beauty.</p>
                         <a href="blog\natureview.php" class="text-primary">Read More </a>
                     </div>
                 </div>
