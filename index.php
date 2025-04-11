@@ -216,7 +216,7 @@
                     <div class="card-body">
                         <h5 class="card-title">How to Travel Cheaply by Bus</h5>
                         <p class="card-text">Learn how to use public transport smartly with our budget travel guide.</p>
-                        <a href="#" class="text-primary">Read More </a>
+                        <a href="blog/cheaptravel.php" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>
