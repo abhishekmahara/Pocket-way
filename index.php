@@ -227,7 +227,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Historic Sites to Visit</h5>
                         <p class="card-text">Explore temples, forts, and spiritual places that define Uttarakhand's rich culture.</p>
-                        <a href="#" class="text-primary">Read More </a>
+                        <a href="blog\historicsites.php" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>
