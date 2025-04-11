@@ -201,7 +201,7 @@
             <!-- Article 2 -->
             <div class="col-md-4">
                 <div class="card card-custom h-100">
-                    <img src="assets\img\Bal Mithai.avif" class="card-img-top" alt="Local Cuisine">
+                    <img src="assets\img\local_food.jpg" class="card-img-top" alt="Local Cuisine">
                     <div class="card-body">
                         <h5 class="card-title">Local Foods You Must Try</h5>
                         <p class="card-text">Enjoy the taste of Aloo Ke Gutke and Bal Mithai while exploring the beautiful hills of Uttarakhand.</p>
@@ -216,6 +216,7 @@
                     <div class="card-body">
                         <h5 class="card-title">How to Travel Cheaply by Bus</h5>
                         <p class="card-text">Learn how to use public transport smartly with our budget travel guide.</p>
+                        <a href="blog/travelBus.php" class="text-primary">Read More </a>
                         <a href="blog/cheaptravel.php" class="text-primary">Read More </a>
                     </div>
                 </div>
@@ -227,7 +228,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Historic Sites to Visit</h5>
                         <p class="card-text">Explore temples, forts, and spiritual places that define Uttarakhand's rich culture.</p>
-                        <a href="blog\historicsites.php" class="text-primary">Read More </a>
+                        <a href="#" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>

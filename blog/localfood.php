@@ -55,9 +55,9 @@
         border-radius: 12px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         margin-bottom: 20px;
-        width: 70%;
+        width: 80%;
         object-fit: cover; 
-        height: 20rem;
+        height: 30rem;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -78,7 +78,7 @@
         <!-- Aloo Ke Gutke -->
         <div class="section-heading">1. Aloo Ke Gutke</div>
         <div class="food-box">
-            <img src="../assets/img/Aloo ke Gutke.jpg" alt="Aloo Ke Gutke" class="article-img">
+            <img src="../assets/img/aalu k gutke.jpg" alt="Aloo Ke Gutke" class="article-img">
             <p>Aloo Ke Gutke is a traditional Kumaoni dish made with boiled potatoes sautéed in mustard oil and seasoned with local spices like jakhiya (wild mustard seeds) or cumin seeds. It's often garnished with fresh coriander and served with puris or rotis. This simple yet flavorful dish is a staple in Uttarakhand households. :contentReference[oaicite:0]{index=0}</p>
         </div>
 
@@ -99,7 +99,7 @@
         <!-- Bal Mithai -->
         <div class="section-heading">4. Bal Mithai</div>
         <div class="food-box">
-            <img src="../assets\img\Bal Mithai.avif" alt="Bal Mithai" class="article-img">
+            <img src="../assets\img\Bal Mithai.jpg" alt="Bal Mithai" class="article-img">
             <p>Bal Mithai is a beloved sweet from the Kumaon region, particularly famous in Almora. This chocolate-like fudge is made from roasted khoya and coated with white sugar balls, offering a delightful treat for those with a sweet tooth. :contentReference[oaicite:3]{index=3}</p>
         </div>
 
