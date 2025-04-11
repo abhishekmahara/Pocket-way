@@ -90,13 +90,6 @@
             <p>Nanda Devi, one of the highest mountains in India, is a symbol of Uttarakhand's natural grandeur. The Nanda Devi Biosphere Reserve, a UNESCO World Heritage site, offers an extraordinary ecosystem with rare species of flora and fauna. The surrounding valleys are lush with greenery, making it a must-visit destination for nature lovers.</p>
         </div>
 
-        <!-- Valley of Flowers -->
-        <div class="section-heading">3. Valley of Flowers</div>
-        <div class="landscape-box">
-            <img src="https://plus.unsplash.com/premium_photo-1675601671458-9dcf1753cacc?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Valley of Flowers" class="landscape-img">
-            <p>The Valley of Flowers is a UNESCO World Heritage site renowned for its vibrant meadows and diverse plant species. Located in the Garhwal region, the valley is home to hundreds of species of alpine flowers that bloom during the monsoon season, creating a breathtaking view. It's a paradise for trekkers and photographers alike.</p>
-        </div>
-
         <!-- Auli -->
         <div class="section-heading">4. Auli</div>
         <div class="landscape-box">
