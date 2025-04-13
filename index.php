@@ -214,7 +214,7 @@
                 <div class="card card-custom h-100">
                     <img src="https://images.unsplash.com/photo-1584127088015-3b0be0722c66?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c29sbyUyMHdpdGglMjBpbmRpYW4lMjBidXN8ZW58MHx8MHx8fDA%3D" class="card-img-top" alt="Bus Travel Tips">
                     <div class="card-body">
-                        <h5 class="card-title">How to Travel Cheaply by Bus</h5>
+                        <h5 class="card-title">How to Travel Affordably by Bus in Uttarakhand</h5>
                         <p class="card-text">Learn how to use public transport smartly with our budget travel guide.</p>
                         <a href="blog/travelBus.php" class="text-primary">Read More </a>
                         <a href="blog/cheaptravel.php" class="text-primary">Read More </a>
@@ -228,7 +228,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Historic Sites to Visit</h5>
                         <p class="card-text">Explore temples, forts, and spiritual places that define Uttarakhand's rich culture.</p>
-                        <a href="#" class="text-primary">Read More </a>
+                        <a href="blog\historicsites.php" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>
@@ -237,9 +237,9 @@
                 <div class="card card-custom h-100">
                     <img src="https://images.unsplash.com/photo-1522506209496-4536d9020ec4?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c29sbyUyMHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D" class="card-img-top" alt="Solo Travel">
                     <div class="card-body">
-                        <h5 class="card-title">Solo Travel in Uttarakhand</h5>
+                        <h5 class="card-title">Solo Adventures in Uttarakhand</h5>
                         <p class="card-text">Is it safe? Where to go? Tips for solo travelers looking to explore the unknown.</p>
-                        <a href="#" class="text-primary">Read More </a>
+                        <a href="blog\solotravel.php" class="text-primary">Read More </a>
                     </div>
                 </div>
             </div>
