@@ -117,13 +117,15 @@
   </section>
 
 
-  
-  <!-- Destinations -->
-  <section class="bg-white">
-    <div class="container">
-      <h2 class="section-title">Top Destinations</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
+ <!-- Destinations -->
+<section class="bg-white">
+  <div class="container">
+    <h2 class="section-title">Top Destinations</h2>
+    <div class="row">
+
+      <!-- Nainital -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#nainital" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
             <img src="assets/img/nanital.jpeg" class="card-img-top" alt="Nainital">
             <div class="card-body">
@@ -131,17 +133,25 @@
               <p class="card-text">A beautiful lake town surrounded by hills and serene views.</p>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 mb-4">
+        </a>
+      </div>
+
+      <!-- Kedarnath -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#kedarnath" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
-          <img src="assets/img/kedarnath.jpg" alt="Kedarkantha Trek">
+            <img src="assets/img/kedarnath.jpg" class="card-img-top" alt="Kedarnath">
             <div class="card-body">
               <h5 class="card-title">Kedarnath</h5>
               <p class="card-text">A holy shrine in the Himalayas, offering spiritual and scenic beauty.</p>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 mb-4">
+        </a>
+      </div>
+
+      <!-- Rishikesh -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#rishikesh" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
             <img src="assets/img/rishikesh.jpg" class="card-img-top" alt="Rishikesh">
             <div class="card-body">
@@ -149,39 +159,52 @@
               <p class="card-text">Yoga capital of the world with adventure sports and river rafting.</p>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 mb-4">
+        </a>
+      </div>
+
+      <!-- Munsiyari -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#munsiyari" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
-            <img src="assets/img/munsiyari.jpg" class="card-img-top" alt="munsyari">
+            <img src="assets/img/munsiyari.jpg" class="card-img-top" alt="Munsiyari">
             <div class="card-body">
               <h5 class="card-title">Munsiyari</h5>
-              <p class="card-text"> Munsiyari is a popular trekking destination, and serves as a base to various popular trails</p>
+              <p class="card-text">A trekking hub offering panoramic Himalayan views and adventure trails.</p>
             </div>
           </div>
-        </div>
+        </a>
+      </div>
 
-        <div class="col-md-4 mb-4">
+      <!-- Harsil Valley -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#harsil" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
             <img src="assets/img/harsil.jpg" class="card-img-top" alt="Harsil Valley">
             <div class="card-body">
               <h5 class="card-title">Harsil Valley</h5>
-              <p class="card-text">Harsil is a village, tourist hill station and army area located on the banks of the Bhagirathi River, on the way to Gangotri</p>
-          </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <div class="card shadow-sm">
-            <img src="assets/img/adi-kailash.jpg" class="card-img-top" alt=" Adi-kailash">
-            <div class="card-body">
-              <h5 class="card-title">Adi Kailash</h5>
-              <p class="card-text">​Adi Kailash, also known as Chota Kailash, is a sacred Himalayan peak in Uttarakhand.</p>
+              <p class="card-text">A quiet hill station on the Bhagirathi River en route to Gangotri.</p>
             </div>
           </div>
-        </div>
+        </a>
       </div>
+
+      <!-- Adi Kailash -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#adi-kailash" class="text-decoration-none text-dark">
+          <div class="card shadow-sm">
+            <img src="assets/img/adi-kailash.jpg" class="card-img-top" alt="Adi Kailash">
+            <div class="card-body">
+              <h5 class="card-title">Adi Kailash</h5>
+              <p class="card-text">Sacred Himalayan peak also known as Chhota Kailash, ideal for pilgrimages.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Travel Articles -->
 
