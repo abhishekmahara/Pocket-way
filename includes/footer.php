@@ -39,7 +39,9 @@
 
       <!-- About Section -->
       <div class="col-md-4 mb-4">
-      <img src="assets/img/logoo.png" alt="Pocket" class="logo">
+      <a class="navbar-brand" href="#" style="font-size: 2rem; font-weight: 700; color: #ffffff;">
+      <span style="color: #F9A825;">Pocket</span>Way
+    </a>
       <p class="mb-0">Your smart companion for affordable travel in Uttarakhand using public transport. Save money, travel smart!</p>
       </div>
 

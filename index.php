@@ -62,14 +62,14 @@
       margin-bottom: 2rem;
     }
 
-    .text-primary {    /* Read More Button  */
+    .read-more {    /* Read More Button  */
     padding: 10px 20px;
     background-color: #F9A825;
     text-decoration: none;
     border-radius: 5px;
     display: inline-block;
     text-align: center;
-    color: black;
+    color: white ;
     }
 
     .card-title {
@@ -116,6 +116,8 @@
     </div>
   </section>
 
+
+  
   <!-- Destinations -->
   <section class="bg-white">
     <div class="container">
@@ -194,7 +196,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Top 5 Treks in Uttarakhand</h5>
                         <p class="card-text">Discover thrilling treks like Kedarkantha and Valley of Flowers for your next adventure.</p>
-                        <a href="blog/fivetrek.php" class="text-primary">Read More </a>
+                        <a href="blog/fivetrek.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -205,7 +207,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Local Foods You Must Try</h5>
                         <p class="card-text">Enjoy the taste of Aloo Ke Gutke and Bal Mithai while exploring the beautiful hills of Uttarakhand.</p>
-                        <a href="blog/localfood.php" class="text-primary">Read More </a>
+                        <a href="blog/localfood.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -216,8 +218,7 @@
                     <div class="card-body">
                         <h5 class="card-title">How to Travel Cheaply by Bus</h5>
                         <p class="card-text">Learn how to use public transport smartly with our budget travel guide.</p>
-                        <a href="blog/travelBus.php" class="text-primary">Read More </a>
-                        <a href="blog/cheaptravel.php" class="text-primary">Read More </a>
+                        <a href="blog/cheaptravel.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -228,7 +229,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Historic Sites to Visit</h5>
                         <p class="card-text">Explore temples, forts, and spiritual places that define Uttarakhand's rich culture.</p>
-                        <a href="" class="text-primary">Read More </a>
+                        <a href="" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -239,7 +240,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Solo Travel in Uttarakhand</h5>
                         <p class="card-text">Is it safe? Where to go? Tips for solo travelers looking to explore the unknown.</p>
-                        <a href="#" class="text-primary">Read More </a>
+                        <a href="#" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -250,7 +251,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Must-See Landscapes in Uttarakhand</h5>
                         <p class="card-text">Explore Uttarakhand’s iconic landscapes, highlighting the region's natural beauty.</p>
-                        <a href="blog\natureview.php" class="text-primary">Read More </a>
+                        <a href="blog\natureview.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
