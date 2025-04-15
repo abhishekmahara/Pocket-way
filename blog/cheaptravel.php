@@ -19,13 +19,10 @@
         padding: 50px 30px;
         border-radius: 15px;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-        animation: fadeIn 1s ease-in-out;
+        
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+   
 
     .article-title {
         color: var(--primary-color);
@@ -62,15 +59,9 @@
         border-left: 6px solid var(--primary-color);
         border-radius: 12px;
         padding: 20px 25px;
-        transition: 0.3s ease;
+        
     }
-
-    .card:hover {
-        background: #e6fafa;
-        transform: translateY(-5px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    }
-
+    
     .card h4 {
         margin-top: 0;
         color: var(--primary-color);
@@ -123,7 +114,7 @@
         <h1 class="article-title">How to Travel Affordably by Bus in Uttarakhand</h1>
         <p class="lead">Dreaming of exploring the mountains without spending a fortune? Here's your guide to traveling through Uttarakhand using local and government buses, keeping your adventure budget-friendly and full of memories.</p>
 
-        <div class="section-heading">🚍 Types of Buses You Can Use</div>
+        <div class="section-heading"> Types of Buses You Can Use</div>
         <div class="grid-2">
             <div class="card">
                 <h4>UTC Ordinary & Semi-Deluxe</h4>
@@ -140,7 +131,7 @@
             </div>
         </div>
 
-        <div class="section-heading">📍 Must-Know Bus Routes & Destinations</div>
+        <div class="section-heading"> Must-Know Bus Routes & Destinations</div>
         <div>
             <span class="place-tag">Dehradun – Mussoorie (₹60)</span>
             <span class="place-tag">Rishikesh – Badrinath (₹500)</span>
@@ -149,16 +140,16 @@
             <span class="place-tag">Pithoragarh – Munsiyari (₹250)</span>
         </div>
 
-        <div class="section-heading">💡 Smart Travel Tips</div>
+        <div class="section-heading"> Smart Travel Tips</div>
         <ul class="tip-list">
-        <li>🕐 Start early: Most buses leave between 4 AM and 9 AM. Arriving early gives you better options.</li>
-    <li>📱 Book online: Use the <a href="https://utconline.uk.gov.in">UTC website</a> to reserve seats on longer routes.</li>
-    <li>💬 Talk to locals: Shopkeepers or locals at bus stands often know more than online schedules.</li>
-    <li>🎒 Travel light: Buses have limited luggage space. Only carry what you really need.</li>
-    <li>🌄 Mix buses and walking: For places like Chopta or Auli, take a bus close by, then walk or grab a shared jeep.</li>
+        <li>Start early: Most buses leave between 4 AM and 9 AM. Arriving early gives you better options.</li>
+    <li> Book online: Use the <a href="https://utconline.uk.gov.in">UTC website</a> to reserve seats on longer routes.</li>
+    <li> Talk to locals: Shopkeepers or locals at bus stands often know more than online schedules.</li>
+    <li> Travel light: Buses have limited luggage space. Only carry what you really need.</li>
+    <li> Mix buses and walking: For places like Chopta or Auli, take a bus close by, then walk or grab a shared jeep.</li>
         </ul>
 
-        <div class="section-heading">🎯 Best Times to Travel Affordably</div>
+        <div class="section-heading"> Best Times to Travel Affordably</div>
         <div class="grid-2">
             <div class="card">
                 <h4>Off-Peak Seasons</h4>
@@ -170,12 +161,12 @@
             </div>
         </div>
 
-        <div class="section-heading">📌 Bonus Hacks</div>
+        <div class="section-heading">Bonus Hacks</div>
         <ul class="tip-list">
-            <li>🗺 Use Google Maps to spot major stops on your route and plan break journeys.</li>
-            <li>📷 Download offline maps — signal is patchy in the hills.</li>
-            <li>🚶 If a direct bus isn’t available, break your trip into 2-3 legs. It’s cheaper and more flexible.</li>
-            <li>🪪 Carry ID: Especially helpful if asked by local officers in sensitive zones.</li>
+            <li>Use Google Maps to spot major stops on your route and plan break journeys.</li>
+            <li> Download offline maps — signal is patchy in the hills.</li>
+            <li> If a direct bus isn’t available, break your trip into 2-3 legs. It’s cheaper and more flexible.</li>
+            <li> Carry ID: Especially helpful if asked by local officers in sensitive zones.</li>
         </ul>
 
         <div class="final-words">
