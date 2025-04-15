@@ -229,7 +229,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Historic Sites to Visit</h5>
                         <p class="card-text">Explore temples, forts, and spiritual places that define Uttarakhand's rich culture.</p>
-                        <a href="" class="text-primary">Read More </a>
+                        <a href="blog/historicsites.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -240,7 +240,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Solo Adventures in Uttarakhand</h5>
                         <p class="card-text">Is it safe? Where to go? Tips for solo travelers looking to explore the unknown.</p>
-                        <a href="#" class="text-primary">Read More </a>
+                        <a href="blog/solotravel.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
