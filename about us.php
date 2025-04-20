@@ -1,70 +1,99 @@
 
 
-<?php include '../includes/header.php'; ?>
+<?php include 'includes/header.php'; ?>
 
 
-<!--main page --->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About Us - Travel World</title>
-  <!-- Bootstrap CSS CDN -->
+  <title>About Us </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+    }
+
+    .hero {
+      background-image: url('https://source.unsplash.com/1600x600/?travel,landscape');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .video-section iframe {
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Travel World</a>
-    </div>
-  </nav>
-
-  <!-- About Us Section -->
+ 
+  <!-- About Us Text Section -->
   <section class="container my-5">
-    <div class="text-center">
-      <h1>About Us</h1>
-      <p class="lead">Your travel companion around the globe!</p>
-    </div>
-
-    <div class="row mt-4">
+    <div class="row align-items-center">
       <div class="col-md-6">
-        <img src="https://source.unsplash.com/600x400/?travel,nature" alt="About Us Image" class="img-fluid rounded">
+        <h2>Who We Are</h2>
+        <p>Welcome to Explore Uttarakhand the Smart Way– a travel hub created by explorers, for explorers. We're passionate travelers with a deep love for discovering new cultures, places, and experiences. Our goal? To help you travel smarter, explore deeper, and make memories that last forever.</p>
       </div>
-      <div class="col-md-6">
-        <h3>Who We Are</h3>
-        <p>We are a passionate team of travelers and explorers. Our mission is to help you discover breathtaking places around the world with unforgettable experiences. Whether you're seeking adventure, relaxation, or culture, we’ve got the perfect trip for you!</p>
+    
       </div>
-    </div>
+    
   </section>
 
-  <!-- Image Scroll Bar (Carousel) -->
+  <!-- About Us Text Section -->
   <section class="container my-5">
-    <h2 class="text-center mb-4">Our Journeys</h2>
-
-    <div id="travelCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="https://source.unsplash.com/800x400/?paris" class="d-block w-100" alt="Paris">
-        </div>
-        <div class="carousel-item">
-          <img src="https://source.unsplash.com/800x400/?tokyo" class="d-block w-100" alt="Tokyo">
-        </div>
-        <div class="carousel-item">
-          <img src="https://source.unsplash.com/800x400/?newyork" class="d-block w-100" alt="New York">
-        </div>
-        <div class="carousel-item">
-          <img src="https://source.unsplash.com/800x400/?bali" class="d-block w-100" alt="Bali">
-        </div>
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h2>Our Mission</h2>
+        <p>We believe travel changes lives. That’s why our mission is to make travel easy, exciting, and meaningful for everyone—whether you're a first-timer or a seasoned adventurer.</p>
+  </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#travelCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#travelCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
-    </div>
+    
   </section>
-  <?php include '../includes/footer.php'; ?>
+
+
+  <!-- Photo Gallery -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Travel Moments</h2>
+    <div class="row g-4 gallery">
+    
+      <div class="col-md-4"><img src="assets/img/top trek.jpg" alt=""></div>
+      <div class="col-md-4"><img src="assets/img/Valley-off-flowers.jpeg" alt=""></div>
+      <div class="col-md-4"><img src="assets/img/har ki doon.jpeg" alt=""></div>
+      <div class="col-md-4"><img src="assets/img/nanital.jpeg" alt=""></div>
+      <div class="col-md-4"><img src="assets/img/munsiyari.jpg" alt=""></div>
+      <div class="col-md-4"><img src="assets/img/rishikesh.jpg" alt=""></div>
+      <div class="col-md-4"><img src="assets/img/kedarkantha.jpeg" alt=""></div>
+      <div class="col-md-4"><img src="assets/img/nag-tibba.jpeg" alt=""></div>
+      <div class="col-md-4"><img src="assets/img/harsil.jpg" alt=""></div>
+      <div class="col-md-4"><img src="assets/img/roopkund.jpeg" alt=""></div>
+      <div class="col-md-4"><img src="assets/img/triund.jpeg" alt=""></div>
+
+  </div>
+  </section>
+
+
+  <?php   
+include 'includes/footer.php';
+?>

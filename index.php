@@ -1,9 +1,6 @@
 <?php include 'includes/header.php'; ?>
 
-
-
-
-    <main>
+ <main>
     <style>
     :root {
       --primary-color: #007B7F;

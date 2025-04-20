@@ -91,7 +91,7 @@
       <div class="carousel-inner rounded">
         <div class="carousel-item active">
           <div class="image-container">
-            <img src="../assets/img/nanital.jpeg" class="d-block w-100" alt="Nainital Lake">
+            <img src="assets/img/Nainital-Lake.jpg" assetsclass="d-block w-100" alt="Nainital Lake">
           </div>
         </div>
         <div class="carousel-item">
@@ -155,7 +155,7 @@
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="../assets/img/kedarnath3.jpg" class="d-block w-100" alt="Kedarnath Mountains">
+            <img src="assets/img/view.jpg"class="d-block w-100" alt="Kedarnath Mountains">
           </div>
         </div>
       </div>
@@ -197,12 +197,12 @@
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="../assets/img/harsil2.jpg" class="d-block w-100" alt="Harsil Landscape">
+            <img src="assets/img/harsil.jpg" class="d-block w-100" alt="Harsil Landscape">
           </div>
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="../assets/img/harsil3.jpg" class="d-block w-100" alt="Harsil River">
+            <img src="assets/img/Valley-off-flowers.jpeg" class="d-block w-100" alt="Harsil River">
           </div>
         </div>
       </div>
