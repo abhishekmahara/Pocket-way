@@ -96,12 +96,12 @@
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="../assets/img/nainital2.jpg" class="d-block w-100" alt="Snow View Point">
+            <img src="assets/img/Snow-Hill-At-peak-Season.jpg" class="d-block w-100" alt="Snow View Point">
           </div>
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="../assets/img/nainital3.jpg" class="d-block w-100" alt="Tiffin Top">
+            <img src="assets/img/download.jpeg" class="d-block w-100" alt="Tiffin Top">
           </div>
         </div>
         <div class="carousel-item">
