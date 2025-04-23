@@ -20,7 +20,9 @@
     }
 
     .hero {
-      background-color: var(--primary-color);
+      background-image: url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background-size: cover;
+      background-position: 50% 50%;
       color: white;
       padding: 4rem 0;
       text-align: center;
@@ -90,7 +92,7 @@
   <!-- Hero Section with Form -->
   <section class="hero">
     <div class="container">
-      <h1>Explore Uttarakhand the Smart Way</h1>
+      <h1>Explore Uttarakhand the Smart way</h1>
       <p>Plan your journey with affordable public transport.</p>
       <form class="row justify-content-center">
         <div class="col-md-3">

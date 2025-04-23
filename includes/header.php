@@ -36,7 +36,7 @@
   <!-- Final Polished Header -->
 <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #007B7F; padding: 1.2rem 0;">
   <div class="container">
-      <img src="../assets/img/logoo.png" alt="Pocket" class="logo">
+      <img src="assets/img/logoo.png" alt="Pocket" class="logo">
     
     <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -55,9 +55,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-white fs-5 px-3" href="#fares">Fare Calculator</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white fs-5 px-3" href="#contact">Contact Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white fs-5 px-3" href="#about">About Us</a>
