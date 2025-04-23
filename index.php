@@ -64,14 +64,14 @@
       margin-bottom: 2rem;
     }
 
-    .text-primary {    /* Read More Button  */
+    .read-more {    /* Read More Button  */
     padding: 10px 20px;
     background-color: #F9A825;
     text-decoration: none;
     border-radius: 5px;
     display: inline-block;
     text-align: center;
-    color: black;
+    color: white ;
     }
 
     .card-title {
@@ -118,12 +118,16 @@
     </div>
   </section>
 
-  <!-- Destinations -->
-  <section class="bg-white">
-    <div class="container">
-      <h2 class="section-title">Top Destinations</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
+
+ <!-- Destinations -->
+<section class="bg-white">
+  <div class="container">
+    <h2 class="section-title">Top Destinations</h2>
+    <div class="row">
+
+      <!-- Nainital -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#nainital" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
             <img src="assets/img/nanital.jpeg" class="card-img-top" alt="Nainital">
             <div class="card-body">
@@ -131,17 +135,25 @@
               <p class="card-text">A beautiful lake town surrounded by hills and serene views.</p>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 mb-4">
+        </a>
+      </div>
+
+      <!-- Kedarnath -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#kedarnath" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
-          <img src="assets/img/kedarnath.jpg" alt="Kedarkantha Trek">
+            <img src="assets/img/kedarnath.jpg" class="card-img-top" alt="Kedarnath">
             <div class="card-body">
               <h5 class="card-title">Kedarnath</h5>
               <p class="card-text">A holy shrine in the Himalayas, offering spiritual and scenic beauty.</p>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 mb-4">
+        </a>
+      </div>
+
+      <!-- Rishikesh -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#rishikesh" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
             <img src="assets/img/rishikesh.jpg" class="card-img-top" alt="Rishikesh">
             <div class="card-body">
@@ -149,39 +161,52 @@
               <p class="card-text">Yoga capital of the world with adventure sports and river rafting.</p>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 mb-4">
+        </a>
+      </div>
+
+      <!-- Munsiyari -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#munsiyari" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
-            <img src="assets/img/munsiyari.jpg" class="card-img-top" alt="munsyari">
+            <img src="assets/img/munsiyari.jpg" class="card-img-top" alt="Munsiyari">
             <div class="card-body">
               <h5 class="card-title">Munsiyari</h5>
-              <p class="card-text"> Munsiyari is a popular trekking destination, and serves as a base to various popular trails</p>
+              <p class="card-text">A trekking hub offering panoramic Himalayan views and adventure trails.</p>
             </div>
           </div>
-        </div>
+        </a>
+      </div>
 
-        <div class="col-md-4 mb-4">
+      <!-- Harsil Valley -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#harsil" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
             <img src="assets/img/harsil.jpg" class="card-img-top" alt="Harsil Valley">
             <div class="card-body">
               <h5 class="card-title">Harsil Valley</h5>
-              <p class="card-text">Harsil is a village, tourist hill station and army area located on the banks of the Bhagirathi River, on the way to Gangotri</p>
-          </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <div class="card shadow-sm">
-            <img src="assets/img/adi-kailash.jpg" class="card-img-top" alt=" Adi-kailash">
-            <div class="card-body">
-              <h5 class="card-title">Adi Kailash</h5>
-              <p class="card-text">​Adi Kailash, also known as Chota Kailash, is a sacred Himalayan peak in Uttarakhand.</p>
+              <p class="card-text">A quiet hill station on the Bhagirathi River en route to Gangotri.</p>
             </div>
           </div>
-        </div>
+        </a>
       </div>
+
+      <!-- Adi Kailash -->
+      <div class="col-md-4 mb-4">
+        <a href="blog/blog.php#adi-kailash" class="text-decoration-none text-dark">
+          <div class="card shadow-sm">
+            <img src="assets/img/adi-kailash.jpg" class="card-img-top" alt="Adi Kailash">
+            <div class="card-body">
+              <h5 class="card-title">Adi Kailash</h5>
+              <p class="card-text">Sacred Himalayan peak also known as Chhota Kailash, ideal for pilgrimages.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Travel Articles -->
 
@@ -196,7 +221,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Top 5 Treks in Uttarakhand</h5>
                         <p class="card-text">Discover thrilling treks like Kedarkantha and Valley of Flowers for your next adventure.</p>
-                        <a href="blog/fivetrek.php" class="text-primary">Read More </a>
+                        <a href="blog/fivetrek.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -207,7 +232,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Local Foods You Must Try</h5>
                         <p class="card-text">Enjoy the taste of Aloo Ke Gutke and Bal Mithai while exploring the beautiful hills of Uttarakhand.</p>
-                        <a href="blog/localfood.php" class="text-primary">Read More </a>
+                        <a href="blog/localfood.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -218,8 +243,7 @@
                     <div class="card-body">
                         <h5 class="card-title">How to Travel Affordably by Bus in Uttarakhand</h5>
                         <p class="card-text">Learn how to use public transport smartly with our budget travel guide.</p>
-                        <a href="blog/travelBus.php" class="text-primary">Read More </a>
-                        <a href="blog/cheaptravel.php" class="text-primary">Read More </a>
+                        <a href="blog/cheaptravel.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -230,7 +254,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Historic Sites to Visit</h5>
                         <p class="card-text">Explore temples, forts, and spiritual places that define Uttarakhand's rich culture.</p>
-                        <a href="blog\historicsites.php" class="text-primary">Read More </a>
+                        <a href="blog/historicsites.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -241,7 +265,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Solo Adventures in Uttarakhand</h5>
                         <p class="card-text">Is it safe? Where to go? Tips for solo travelers looking to explore the unknown.</p>
-                        <a href="blog\solotravel.php" class="text-primary">Read More </a>
+                        <a href="blog/solotravel.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
@@ -252,7 +276,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Must-See Landscapes in Uttarakhand</h5>
                         <p class="card-text">Explore Uttarakhand’s iconic landscapes, highlighting the region's natural beauty.</p>
-                        <a href="blog\natureview.php" class="text-primary">Read More </a>
+                        <a href="blog\natureview.php" class="read-more">Read More </a>
                     </div>
                 </div>
             </div>
