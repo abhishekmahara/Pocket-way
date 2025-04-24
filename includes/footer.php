@@ -58,9 +58,8 @@
         <ul class="list-unstyled">
           <li><a href="#" class="footer-link">Home</a></li>
           <li><a href="#trip-planner" class="footer-link">Trip Planner</a></li>
-          <li><a href="#routes" class="footer-link">Routes & Schedules</a></li>
-          <li><a href="#fares" class="footer-link">Fare Calculator</a></li>
-          <li><a href="#contact" class="footer-link">Contact Us</a></li>
+          <li><a href="navcontent/routesnscedule.php" class="footer-link">Routes & Schedules</a></li>
+          <li><a href="#contact" class="footer-link">About Us</a></li>
         </ul>
       </div>
 

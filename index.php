@@ -1,4 +1,6 @@
 <?php include 'includes/header.php'; ?>
+<?php include('config.php'); ?>
+
 
 
 
@@ -181,7 +183,7 @@
 
       <!-- Harsil Valley -->
       <div class="col-md-4 mb-4">
-        <a href="blog/blog.php#harsil" class="text-decoration-none text-dark">
+        <a href="blog/blog.php#harsil-valley" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
             <img src="assets/img/harsil.jpg" class="card-img-top" alt="Harsil Valley">
             <div class="card-body">
@@ -194,7 +196,7 @@
 
       <!-- Adi Kailash -->
       <div class="col-md-4 mb-4">
-        <a href="blog/blog.php#adi-kailash" class="text-decoration-none text-dark">
+        <a href="blog/blog.php#adikailash" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
             <img src="assets/img/adi-kailash.jpg" class="card-img-top" alt="Adi Kailash">
             <div class="card-body">
