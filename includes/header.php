@@ -1,3 +1,5 @@
+<?php include(__DIR__ . '/../config.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,16 +26,20 @@
         .navbar {
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+
+        .navbar-logo{
+          height: 50px;           
+          width: auto;            
+          margin-right: 15px;    
+          border-radius: 5px;    
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-  <!-- Final Polished Header -->
 <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #007B7F; padding: 1.2rem 0;">
   <div class="container">
-    <a class="navbar-brand" href="#" style="font-size: 2rem; font-weight: 700; color: #ffffff;">
-      <span style="color: #F9A825;">Pocket</span>Way
-    </a>
+  <img src="<?php echo BASE_URL; ?>assets/img/logoo.png" class="navbar-logo" alt="Logo">
+    
     <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -50,7 +56,10 @@
           <a class="nav-link text-white fs-5 px-3" href="#routes">Routes & Schedules</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fs-5 px-3" href="blog/blog.php">Blog</a>
+          <a class="nav-link text-white fs-5 px-3" href="#fares">Fare Calculator</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fs-5 px-3" href="#contact">Contact Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white fs-5 px-3" href="#about">About Us</a>
