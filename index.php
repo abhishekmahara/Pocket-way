@@ -98,6 +98,7 @@
         <div class="col-md-3">
           <select class="form-select2 form-control" id="from">
             <option value="">From</option>
+            <option>Delhi</option>
             <option>Nainital</option>
             <option>Haridwar</option>
             <option>Dehradun</option>
@@ -106,6 +107,7 @@
         <div class="col-md-3">
           <select class="form-select2 form-control" id="to">
             <option value="">To</option>
+            <option>Adi Kailash</option>
             <option>Kedarnath</option>
             <option>Mussoorie</option>
             <option>Rishikesh</option>
