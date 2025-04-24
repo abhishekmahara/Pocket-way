@@ -96,7 +96,8 @@
     <div class="container">
       <h1>Explore Uttarakhand the Smart way</h1>
       <p>Plan your journey with affordable public transport.</p>
-      <form class="row justify-content-center">
+      <form class="row justify-content-center" method="GET" action="search_routes.php">
+
         <div class="col-md-3">
           <select class="form-select2 form-control" id="from">
             <option value="">From</option>
