@@ -1,0 +1,100 @@
+{
+    "route": "Haldwani to Adi Kailash",
+    "total_distance_km": 472,
+    "total_estimated_fare_inr": 5000,
+    "stations": [
+      {
+        "station": "Haldwani",
+        "distance_from_previous_km": 0,
+        "cumulative_distance_km": 0,
+        "approx_fare_inr": 0,
+        "bus_timings": [
+          "05:45 AM",
+          "06:15 AM",
+          "06:30 AM",
+          "07:45 AM",
+          "09:30 AM",
+          "09:45 AM",
+          "10:45 AM",
+          "11:59 AM",
+          "09:30 PM",
+          "09:45 PM"
+        ]
+      },
+      {
+        "station": "Almora",
+        "distance_from_previous_km": 90,
+        "cumulative_distance_km": 90,
+        "approx_fare_inr": 150,
+        "bus_timings": [
+          "06:00 AM",
+          "08:00 AM",
+          "10:00 AM",
+          "12:00 PM",
+          "02:00 PM",
+          "04:00 PM"
+        ]
+      },
+      {
+        "station": "Didihat",
+        "distance_from_previous_km": 80,
+        "cumulative_distance_km": 170,
+        "approx_fare_inr": 200,
+        "bus_timings": [
+          "07:00 AM",
+          "09:00 AM",
+          "11:00 AM",
+          "01:00 PM",
+          "03:00 PM"
+        ]
+      },
+      {
+        "station": "Pithoragarh",
+        "distance_from_previous_km": 50,
+        "cumulative_distance_km": 220,
+        "approx_fare_inr": 150,
+        "bus_timings": [
+          "08:00 AM",
+          "10:00 AM",
+          "12:00 PM",
+          "02:00 PM",
+          "04:00 PM"
+        ]
+      },
+      {
+        "station": "Dharchula",
+        "distance_from_previous_km": 110,
+        "cumulative_distance_km": 330,
+        "approx_fare_inr": 250,
+        "bus_timings": [
+          "06:00 AM",
+          "08:00 AM",
+          "10:00 AM",
+          "12:00 PM",
+          "02:00 PM"
+        ]
+      },
+      {
+        "station": "Gunji",
+        "distance_from_previous_km": 80,
+        "cumulative_distance_km": 410,
+        "approx_fare_inr": 500,
+        "bus_timings": [
+          "07:00 AM",
+          "09:00 AM",
+          "11:00 AM"
+        ]
+      },
+      {
+        "station": "Adi Kailash Base Camp (Jolingkong)",
+        "distance_from_previous_km": 62,
+        "cumulative_distance_km": 472,
+        "approx_fare_inr": 600,
+        "bus_timings": [
+          "06:00 AM",
+          "08:00 AM"
+        ]
+      }
+    ]
+  }
+  

@@ -1,5 +1,5 @@
 
-<!-- Footer -->
+
 <style>
   .footer-link {
     color: #ffffff;
@@ -30,6 +30,13 @@
   .social-icon:hover {
     color: #ffc107;
   }
+
+  .footer-logo{
+    height: 50px;           
+    width: auto;            
+    margin-right: 15px;    
+    border-radius: 5px;
+  }
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
@@ -40,9 +47,8 @@
 
       <!-- About Section -->
       <div class="col-md-4 mb-4">
-      <a class="navbar-brand" href="#" style="font-size: 2rem; font-weight: 700; color: #ffffff;">
-      <span style="color: #F9A825;">Pocket</span>Way
-    </a>
+     <img src="assets/img/logoo.png" class="footer-logo" alt="Logo">
+      
       <p class="mb-0">Your smart companion for affordable travel in Uttarakhand using public transport. Save money, travel smart!</p>
       </div>
 
@@ -52,9 +58,8 @@
         <ul class="list-unstyled">
           <li><a href="#" class="footer-link">Home</a></li>
           <li><a href="#trip-planner" class="footer-link">Trip Planner</a></li>
-          <li><a href="#routes" class="footer-link">Routes & Schedules</a></li>
-          <li><a href="#fares" class="footer-link">Fare Calculator</a></li>
-          <li><a href="#contact" class="footer-link">Contact Us</a></li>
+          <li><a href="navcontent/routesnscedule.php" class="footer-link">Routes & Schedules</a></li>
+          <li><a href="#contact" class="footer-link">About Us</a></li>
         </ul>
       </div>
 

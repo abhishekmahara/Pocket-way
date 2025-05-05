@@ -1,4 +1,6 @@
 <?php include 'includes/header.php'; ?>
+<?php include('config.php'); ?>
+
 
  <main>
     <style>
@@ -17,7 +19,9 @@
     }
 
     .hero {
-      background-color: var(--primary-color);
+      background-image: url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background-size: cover;
+      background-position: 50% 50%;
       color: white;
       padding: 4rem 0;
       text-align: center;
@@ -87,13 +91,14 @@
   <!-- Hero Section with Form -->
   <section class="hero">
     <div class="container">
-      <h1>Explore Uttarakhand the Smart Way</h1>
+      <h1>Explore Uttarakhand the Smart way</h1>
       <p>Plan your journey with affordable public transport.</p>
-      <form class="row justify-content-center">
+      <form class="row justify-content-center" method="GET" action="search_routes.php">
+
         <div class="col-md-3">
           <select class="form-select2 form-control" id="from">
             <option value="">From</option>
-            <option>Nainital</option>
+          <option>Haldwani</option>
             <option>Haridwar</option>
             <option>Dehradun</option>
           </select>
@@ -101,6 +106,7 @@
         <div class="col-md-3">
           <select class="form-select2 form-control" id="to">
             <option value="">To</option>
+            <option>Adi Kailash</option>
             <option>Kedarnath</option>
             <option>Mussoorie</option>
             <option>Rishikesh</option>
@@ -174,7 +180,7 @@
 
       <!-- Harsil Valley -->
       <div class="col-md-4 mb-4">
-        <a href="blog/blog.php#harsil" class="text-decoration-none text-dark">
+        <a href="blog/blog.php#harsil-valley" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
             <img src="assets/img/harsil.jpg" class="card-img-top" alt="Harsil Valley">
             <div class="card-body">
@@ -187,7 +193,7 @@
 
       <!-- Adi Kailash -->
       <div class="col-md-4 mb-4">
-        <a href="blog/blog.php#adi-kailash" class="text-decoration-none text-dark">
+        <a href="blog/blog.php#adikailash" class="text-decoration-none text-dark">
           <div class="card shadow-sm">
             <img src="assets/img/adi-kailash.jpg" class="card-img-top" alt="Adi Kailash">
             <div class="card-body">
