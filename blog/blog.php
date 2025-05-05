@@ -182,10 +182,12 @@
       <li>Chorabari Lake – A serene spot for meditation and reflection</li>
     </ul>
     <h5>𓎩  Local Cuisine</h5>
-    <p>Try the local Garhwal dishes like Aloo Ke Gutke and Pahadi Rajma. Also, sample traditional Kumaoni sweets like Bal Mithai.</p>
+    <p>Try the local Garhwal dishes like Aloo Ke Gutke and Pahadi Rajma.</p>
     <h5>⚲ Pro Tips</h5>
     <p>The trek is steep, so prepare yourself with proper gear. Carry warm clothing even in the summer months as temperatures can drop suddenly.</p>
   </section>
+
+
 
   <!-- HARSHIL VALLEY -->
   <section id="harsil-valley" class="scroll-offset blog-entry">
@@ -194,7 +196,7 @@
       <div class="carousel-inner rounded">
         <div class="carousel-item active">
           <div class="image-container">
-            <img src="https://www.manchalamushafir.com/harsil/images/harsil-valley-beauty.webp" class="d-block w-100" alt="Harsil Valley">
+            <img src="../assets/img/harsil.jpg" class="d-block w-100" alt="Harsil Valley">
           </div>
         </div>
         <div class="carousel-item">
@@ -234,6 +236,53 @@
     <p>Carry winter clothing during the cold months. It's a perfect destination for trekking and camping.</p>
   </section>
 
+  <!-- RISHIKESH -->
+  <section id="rishikesh" class="scroll-offset blog-entry">
+    <h3>Rishikesh - The Yoga Capital of the World</h3>
+    <div id="slider-rishikesh" class="carousel slide mb-4" data-bs-ride="carousel">
+      <div class="carousel-inner rounded">
+        <div class="carousel-item active">
+          <div class="image-container">
+            <img src="../assets/img/rishikesh.jpg" class="d-block w-100" alt="Laxman Jhula in Rishikesh">
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1591375273789-7d5915d5f26d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Ganga Aarti Rishikesh">
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1576161445075-b55c3a9c9f2b?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Yoga in Rishikesh">
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#slider-rishikesh" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#slider-rishikesh" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <p><strong>Rishikesh</strong> is a serene town on the banks of the Ganges River, renowned for its yoga retreats, spiritual energy, and thrilling adventure sports. It's a gateway to the Himalayas and a hub for seekers of peace and adrenaline alike.</p>
+    <h5>🗓 Best Time to Visit</h5>
+    <p>Visit between February to mid-May and from September to November for the most pleasant weather.</p>
+    <h5>🗺 How to Reach</h5>
+    <p>Rishikesh is well-connected by road and rail. The nearest airport is Jolly Grant Airport, around 20 km away.</p>
+    <h5>⛰︎ Must-Visit Spots</h5>
+    <ul>
+      <li>Laxman Jhula – Iconic suspension bridge with scenic views</li>
+      <li>Triveni Ghat – Famous for the soulful Ganga Aarti</li>
+      <li>Beatles Ashram – A peaceful retreat with graffiti art and meditation spots</li>
+    </ul>
+    <h5>𓎩 Local Cuisine</h5>
+    <p>Enjoy local delicacies like Chole Puri, Aloo Tamatar Sabzi, and fresh Ayurvedic teas in riverside cafés.</p>
+    <h5>⚲ Pro Tips</h5>
+    <p>Respect the spiritual ambiance—avoid alcohol and non-veg food within the town. Don’t miss sunrise yoga by the river for a truly magical experience.</p>
+  </section>
+
   <!-- MUNSIYARI -->
   <section id="munsiyari" class="scroll-offset blog-entry">
     <h3>Munsiyari - The Gateway to Inner Kumaon</h3>
@@ -246,7 +295,7 @@
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="../assets/img/munsiyari2.jpg" class="d-block w-100" alt="Munsiyari Trekking">
+            <img src="../assets/img/munsiyari.jpg" class="d-block w-100" alt="Munsiyari Trekking">
           </div>
         </div>
         <div class="carousel-item">
@@ -288,7 +337,7 @@
       <div class="carousel-inner rounded">
         <div class="carousel-item active">
           <div class="image-container">
-            <img src="https://uttarakhandtriptrek.com/wp-content/uploads/2022/06/aadi-kalish-ji.jpg" class="d-block w-100" alt="Adi Kailash Peaks">
+            <img src="../assets/img/adi-kailash.jpg" class="d-block w-100" alt="Adi Kailash Peaks">
           </div>
         </div>
         <div class="carousel-item">
@@ -323,7 +372,7 @@
       <li>Gauri Kund – A beautiful and spiritual spot</li>
     </ul>
     <h5>𓎩 Local Cuisine</h5>
-    <p>Try Garhwali Pahadi food and some Kumaoni sweets like Bal Mithai and Singori.</p>
+    <p>Try Pahadi food and some Kumaoni sweets like Bal Mithai and Singori.</p>
     <h5>⚲ Pro Tips</h5>
     <p>Ensure to carry a good walking stick, warm clothing, and check for weather updates before your visit.</p>
   </section>

@@ -47,15 +47,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link text-white fs-5 px-3" href="/POCKET-WAY/index.php">Home</a>
+          <a class="nav-link text-white fs-5 px-3" href="?php echo BASE_URL; ?>index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white fs-5 px-3" href="#trip-planner">Trip Planner</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fs-5 px-3" href="#routes">Routes & Schedules</a>
+          <a class="nav-link text-white fs-5 px-3" href="navcontent\routesnscedule.php">Routes & Schedules</a>
         </li>
-  
+
         <li class="nav-item">
           <a class="nav-link text-white fs-5 px-3" href="#about">About Us</a>
         </li>
