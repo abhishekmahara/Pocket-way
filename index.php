@@ -97,28 +97,27 @@
       <h1>Explore Uttarakhand the Smart way</h1>
       <p>Plan your journey with affordable public transport.</p>
       <form class="row justify-content-center" method="GET" action="search_routes.php">
-
-        <div class="col-md-3">
-          <select class="form-select2 form-control" id="from">
-            <option value="">From</option>
-          <option>Haldwani</option>
-            <option>Haridwar</option>
-            <option>Dehradun</option>
-          </select>
-        </div>
-        <div class="col-md-3">
-          <select class="form-select2 form-control" id="to">
-            <option value="">To</option>
-            <option>Adi Kailash</option>
-            <option>Kedarnath</option>
-            <option>Mussoorie</option>
-            <option>Rishikesh</option>
-          </select>
-        </div>
-        <div class="col-md-2">
-          <button class="btn btn-warning w-100" type="submit">Search</button>
-        </div>
-      </form>
+  <div class="col-md-3">
+    <select class="form-select2 form-control" id="from" name="from">
+      <option value="">From</option>
+      <option value="Haldwani">Haldwani</option>
+      <option value="Haridwar">Haridwar</option>
+      <option value="Dehradun">Dehradun</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <select class="form-select2 form-control" id="to" name="to">
+      <option value="">To</option>
+      <option value="Adi Kailash">Adi Kailash</option>
+      <option value="Kedarnath">Kedarnath</option>
+      <option value="Mussoorie">Mussoorie</option>
+      <option value="Rishikesh">Rishikesh</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-warning w-100" type="submit">Search</button>
+  </div>
+</form>
     </div>
   </section>
 

@@ -47,7 +47,7 @@
 
       <!-- About Section -->
       <div class="col-md-4 mb-4">
-     <img src="assets/img/logoo.png" class="footer-logo" alt="Logo">
+     <img src="../assets/img/logoo.png" class="footer-logo" alt="Logo">
       
       <p class="mb-0">Your smart companion for affordable travel in Uttarakhand using public transport. Save money, travel smart!</p>
       </div>
