@@ -1,9 +1,9 @@
 <?php
-
-$servername = "localhost"; // usually localhost for local dev
-$username = "root";        // default for XAMPP/WAMP/MAMP
-$password = "";            // often empty in local setup
-$dbname = "travelwebsite"; // replace with your actual DB name
+ 
+$servername = "localhost";
+$username = "root";      
+$password = "";     
+$dbname = "travelwebsite"; a
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

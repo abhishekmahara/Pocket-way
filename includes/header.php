@@ -55,12 +55,7 @@
         <li class="nav-item">
           <a class="nav-link text-white fs-5 px-3" href="#routes">Routes & Schedules</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white fs-5 px-3" href="#fares">Fare Calculator</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white fs-5 px-3" href="#contact">Contact Us</a>
-        </li>
+  
         <li class="nav-item">
           <a class="nav-link text-white fs-5 px-3" href="#about">About Us</a>
         </li>

@@ -99,8 +99,7 @@
         <div class="col-md-3">
           <select class="form-select2 form-control" id="from">
             <option value="">From</option>
-            <option>Delhi</option>
-            <option>Nainital</option>
+          <option>Haldwani</option>
             <option>Haridwar</option>
             <option>Dehradun</option>
           </select>
