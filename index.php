@@ -2,10 +2,7 @@
 <?php include('config.php'); ?>
 
 
-
-
-
-    <main>
+ <main>
     <style>
     :root {
       --primary-color: #007B7F;

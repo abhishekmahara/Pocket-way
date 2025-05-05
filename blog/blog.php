@@ -201,12 +201,12 @@
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="../assets/img/harsil2.jpg" class="d-block w-100" alt="Harsil Landscape">
+            <img src="assets/img/harsil.jpg" class="d-block w-100" alt="Harsil Landscape">
           </div>
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="../assets/img/harsil3.jpg" class="d-block w-100" alt="Harsil River">
+            <img src="assets/img/Valley-off-flowers.jpeg" class="d-block w-100" alt="Harsil River">
           </div>
         </div>
       </div>

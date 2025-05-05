@@ -57,7 +57,8 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-white fs-5 px-3" href="#about">About Us</a>
+          
+          <a class="nav-link text-white fs-5 px-3" href="about us.php">About Us</a>
         </li>
       </ul>
     </div>
