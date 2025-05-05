@@ -91,7 +91,7 @@
       <div class="carousel-inner rounded">
         <div class="carousel-item active">
           <div class="image-container">
-            <img src="assets/img/Nainital-Lake.jpg" assetsclass="d-block w-100" alt="Nainital Lake">
+          <img src="assets/img/Nainital-Lake.jpg" assetsclass="d-block w-100" alt="Nainital Lake"> 
           </div>
         </div>
         <div class="carousel-item">
