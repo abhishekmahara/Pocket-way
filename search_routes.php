@@ -1,17 +1,18 @@
 <?php
-$from = $_GET['from'] ?? '';
-$to = $_GET['to'] ?? '';
+require_once 'admin/includes/db-config.php';
 
-// Normalize values for matching
-$route = strtolower(trim($from)) . '-to-' . strtolower(str_replace(' ', '-', trim($to)));
-
-// Example condition - route exists
-if ($route === 'haldwani-to-adi-kailash') {
-    header("Location: routes/haldwani-to-adi-kailash.php");
-    exit;
-} else {
-    // Route not found – show error or redirect to homepage
-    echo "<h2 style='text-align:center; margin-top: 100px;'>Sorry, route from <b>$from</b> to <b>$to</b> not found yet.</h2>";
-    echo "<p style='text-align:center;'><a href='index.php'>Go back</a></p>";
+try {
+    // Get unique sources
+    $sources = $pdo->query("SELECT DISTINCT source FROM main_routes WHERE is_active = 1")->fetchAll();
+    
+    // Get unique destinations
+    $destinations = $pdo->query("SELECT DISTINCT destination FROM main_routes WHERE is_active = 1")->fetchAll();
+    
+    echo json_encode([
+        'sources' => array_column($sources, 'source'),
+        'destinations' => array_column($destinations, 'destination')
+    ]);
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => $e->getMessage()]);
 }
-?>
