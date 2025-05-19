@@ -48,7 +48,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="/admin/dashboard.php">
                 <img src="../../assets/img/logoo.png" class="admin-logo" alt="Logo">
-                Pocket-way Admin
+
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -56,33 +56,7 @@ if (session_status() === PHP_SESSION_NONE) {
             </button>
             
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../dashboard.php">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages/routes/manage-routes.php">
-                            <i class="fas fa-route"></i> Routes
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages/stations/manage-stations.php">
-                            <i class="fas fa-map-marker-alt"></i> Stations
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages/buses/manage-buses.php">
-                            <i class="fas fa-bus"></i> Buses
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages/timings/manage-timings.php">
-                            <i class="fas fa-clock"></i> Timings
-                        </a>
-                    </li>
-                </ul>
+              
                 
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
@@ -92,7 +66,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="/admin/auth/logout.php">
+                                <a class="dropdown-item" href="../auth/logout.php">
                                     <i class="fas fa-sign-out-alt"></i> Logout
                                 </a>
                             </li>
