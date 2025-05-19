@@ -21,7 +21,6 @@
   }
   .blog-entry {
     background-color: #f9f9f9;
-    border-left: 6px solid #008080;
     padding: 40px 30px;
     border-radius: 12px;
     margin-bottom: 80px;

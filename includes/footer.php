@@ -1,4 +1,6 @@
-
+<?php
+include __DIR__ . '/../config.php';  
+?>
 
 <style>
   .footer-link {
@@ -41,13 +43,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 
-<footer style="background-color: #007B7F;" class="text-white pt-5 pb-4">
+<footer style="background: linear-gradient(65deg, #007B7F ,rgb(1, 204, 207) );
+" class="text-white pt-5 pb-4">
   <div class="container">
     <div class="row text-center text-md-start">
 
       <!-- About Section -->
       <div class="col-md-4 mb-4">
-     <img src="../assets/img/logoo.png" class="footer-logo" alt="Logo">
+      <a class="navbar-brand" href="<?php echo $base_url; ?>">
+      <img src="<?php echo $logo_url; ?>" alt="Pocket Way Logo" class="navbar-logo" />
+      </a>
       
       <p class="mb-0">Your smart companion for affordable travel in Uttarakhand using public transport. Save money, travel smart!</p>
       </div>
@@ -58,7 +63,6 @@
         <ul class="list-unstyled">
           <li><a href="#" class="footer-link">Home</a></li>
           <li><a href="#trip-planner" class="footer-link">Trip Planner</a></li>
-          <li><a href="navcontent/routesnscedule.php" class="footer-link">Routes & Schedules</a></li>
           <li><a href="#contact" class="footer-link">About Us</a></li>
         </ul>
       </div>
