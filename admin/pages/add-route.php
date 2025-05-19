@@ -193,4 +193,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // JavaScript for dynamically adding stations, buses, and fares
 </script>
 
-<?php require_once '../../includes/admin-footer.php'; ?>
+<?php require_once '../includes/admin-footer.php'; ?>
