@@ -68,9 +68,6 @@ include __DIR__ . '/../config.php';  // adjust path as needed
           <a class="nav-link text-white fs-5 px-3" href="<?php echo $base_url; ?>trip_planner.php">Trip Planner</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fs-5 px-3" href="<?php echo $base_url; ?>navcontent/routesnscedule.php">Routes & Schedules</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link text-white fs-5 px-3" href="<?php echo $base_url; ?>about us.php">About Us</a>
         </li>
       </ul>

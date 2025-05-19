@@ -45,7 +45,6 @@
     }
 
     .landscape-box {
-        background: #ffffff;
         border-radius: 12px;
         padding: 25px;
         margin-bottom: 40px;

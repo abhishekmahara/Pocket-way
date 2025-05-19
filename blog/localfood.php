@@ -3,113 +3,177 @@
     :root {
         --primary-color: #007B7F;
         --accent-color: #F9A825;
-        --background-color: #F4F6F8;
-        --text-color: #212529;
-        --secondary-text: #6c757d;
+        --bg-light: #f4f6f8;
+        --bg-white: #ffffff;
+        --text-dark: #212529;
+        --text-muted: #6c757d;
+        --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     }
 
     body {
-        background-color: var(--background-color);
-        color: var(--text-color);
         font-family: 'Segoe UI', sans-serif;
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        margin: 0;
+        padding: 0;
     }
 
-    a:visited {
-        color: white;
+   .hero {
+    background-color: var(--bg-light);
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);;
+    text-align: center;
+    position: relative;
     }
 
-    .article-wrapper {
-        padding: 50px;
-        border-radius: 15px;
-    }
-
-    .article-title {
-        color: var(--primary-color);
-        font-size: 3rem;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 40px;
-    }
-
-    .section-heading {
-        color: var(--accent-color);
-        font-size: 1.75rem;
-        margin-top: 50px;
-        margin-bottom: 20px;
-        font-weight: 600;
-        text-align: center;
-    }
-
-    .food-box {
-        background: #ffffff;
-        border-radius: 12px;
-        padding: 25px;
-        margin-bottom: 10px;
    
+
+    .hero h1 {
+        position: relative;
+        font-size: 3.3rem;
+        font-weight: bold;
+        z-index: 1;
     }
 
-    .article-img {
-        border: 5px solid #ddd;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        margin-bottom: 20px;
-        width: 80%;
-        object-fit: cover; 
-        height: 30rem;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+    .content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
     }
 
-    ul li {
-        margin-bottom: 8px;
+    .intro {
+        text-align: center;
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 50px;
+    }
+
+    .food-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .food-card {
+        background: var(--bg-white);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease;
+    }
+
+    .food-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .food-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .food-card .card-body {
+        padding: 20px;
+    }
+
+    .food-card h2 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .food-card p {
+        color: var(--text-muted);
+        font-size: 1rem;
+    }
+
+    .section-ending {
+        text-align: center;
+        font-size: 1.3rem;
+        margin-top: 60px;
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.2rem;
+        }
     }
 </style>
-</head>
-<body>
 
-<div class="container py-5">
-    <div class="article-wrapper">
-        <h1 class="article-title">Local Foods You Must Try in Uttarakhand</h1>
-        <p class="lead text-center">Uttarakhand's cuisine is a delightful reflection of its rich culture and natural bounty. Here are some traditional dishes that offer a true taste of the region.</p>
+<div class="hero">
+    <h1>Local Foods You Must Try in Uttarakhand</h1>
+</div>
+
+<div class="content">
+    <p class="intro">
+        Uttarakhand's cuisine is a delightful reflection of its rich culture and natural bounty. Here are some traditional dishes that offer a true taste of the region.
+    </p>
+
+    <div class="food-section">
 
         <!-- Aloo Ke Gutke -->
-        <div class="section-heading">1. Aloo Ke Gutke</div>
-        <div class="food-box">
-            <img src="../assets/img/aalu k gutke.jpg" alt="Aloo Ke Gutke" class="article-img">
-            <p>Aloo Ke Gutke is a traditional Kumaoni dish made with boiled potatoes sautéed in mustard oil and seasoned with local spices like jakhiya (wild mustard seeds) or cumin seeds. It's often garnished with fresh coriander and served with puris or rotis. This simple yet flavorful dish is a staple in Uttarakhand households. :contentReference[oaicite:0]{index=0}</p>
+        <div class="food-card">
+            <img src="../assets/img/aalu k gutke.jpg" alt="Aloo Ke Gutke">
+            <div class="card-body">
+                <h2>1. Aloo Ke Gutke</h2>
+                <p>Aloo Ke Gutke is a traditional Kumaoni dish made with boiled potatoes sautéed in mustard oil and seasoned with local spices like jakhiya or cumin. It’s often served with puris or rotis.</p>
+            </div>
         </div>
 
-        <!-- Kafuli -->
-        <div class="section-heading">2. Jholi</div>
-        <div class="food-box">
-            <img src="../assets\img\jholi.jpeg" alt="Jholi" class="article-img">
-            <p>Jholi is a delicious and nutritious dish from Kumaon that you can easily make at home with simple ingredients. It is a type of curry made with buttermilk, wheat flour or gram flour, and spices. You can add radish, garlic, or onion to it as per your preference. Jholi is usually served with rice or roti. :contentReference[oaicite:1]{index=1}</p>
+        <!-- Jholi -->
+        <div class="food-card">
+            <img src="../assets/img/jholi.jpeg" alt="Jholi">
+            <div class="card-body">
+                <h2>2. Jholi</h2>
+                <p>Jholi is a delicious curry made with buttermilk and gram/wheat flour, flavored with garlic or radish. Best enjoyed with rice or roti.</p>
+            </div>
         </div>
 
         <!-- Bhang Ki Chutney -->
-        <div class="section-heading">3. Bhang Ki Chutney</div>
-        <div class="food-box">
-            <img src="../assets\img\Bhang Ki Chutney.jpg" alt="Bhang Ki Chutney" class="article-img">
-            <p>Bhang Ki Chutney is a unique condiment made from roasted hemp seeds, blended with garlic, cumin, and tamarind. This tangy and flavorful chutney is a perfect accompaniment to various dishes and showcases the inventive use of local ingredients in Uttarakhand's cuisine. :contentReference[oaicite:2]{index=2}</p>
+        <div class="food-card">
+            <img src="../assets/img/Bhang Ki Chutney.jpg" alt="Bhang Ki Chutney">
+            <div class="card-body">
+                <h2>3. Bhang Ki Chutney</h2>
+                <p>This tangy condiment is made from roasted hemp seeds, cumin, and tamarind, offering a burst of bold local flavors.</p>
+            </div>
         </div>
 
         <!-- Bal Mithai -->
-        <div class="section-heading">4. Bal Mithai</div>
-        <div class="food-box">
-            <img src="../assets\img\Bal Mithai.jpg" alt="Bal Mithai" class="article-img">
-            <p>Bal Mithai is a beloved sweet from the Kumaon region, particularly famous in Almora. This chocolate-like fudge is made from roasted khoya and coated with white sugar balls, offering a delightful treat for those with a sweet tooth. :contentReference[oaicite:3]{index=3}</p>
+        <div class="food-card">
+            <img src="../assets/img/Bal Mithai.jpg" alt="Bal Mithai">
+            <div class="card-body">
+                <h2>4. Bal Mithai</h2>
+                <p>A signature sweet of Almora, Bal Mithai is like chocolate fudge made with roasted khoya and coated with sugar pearls.</p>
+            </div>
         </div>
 
         <!-- Singori -->
-        <div class="section-heading">5. Singori</div>
-        <div class="food-box">
-            <img src="../assets\img\Singori.png" alt="Singori" class="article-img">
-            <p>Singori is a traditional sweet made with khoya, wrapped in maalu leaves, imparting a distinct aroma and flavor. This cone-shaped delicacy is a testament to the region's rich culinary heritage and is a must-try for visitors. :contentReference[oaicite:4]{index=4}</p>
+        <div class="food-card">
+            <img src="../assets/img/Singori.png" alt="Singori">
+            <div class="card-body">
+                <h2>5. Singori</h2>
+                <p>Singori is a cone-shaped dessert made with khoya and wrapped in maalu leaves, giving it a unique fragrance and flavor.</p>
+            </div>
         </div>
 
-        <div class="section-heading">Experience the Flavors of Uttarakhand</div>
-        <p>Exploring Uttarakhand's local cuisine offers a deeper understanding of its culture and traditions. Each dish tells a story of the land and its people, making your culinary journey through this Himalayan state truly unforgettable.</p>
+         <!-- Madue ki Roti -->
+        <div class="food-card">
+            <img src="https://i0.wp.com/www.navuttarakhand.com/wp-content/uploads/2016/09/Mandua-Ki-Roti.jpg?fit=1128%2C846&ssl=1" alt="Mandua">
+            <div class="card-body">
+                <h2>5. Mandua Ki Roti </h2>
+                <p>Mandua Ki Roti is a nutritious millet flatbread from Uttarakhand, rich in calcium and great for digestion—especially enjoyed during cold winters.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section-ending">
+        Experience the Flavors of Uttarakhand – A Journey Through Taste and Tradition.
     </div>
 </div>
 
