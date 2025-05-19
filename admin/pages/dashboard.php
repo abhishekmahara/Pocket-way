@@ -180,7 +180,8 @@ try {
                 <p>Welcome back! Manage your routes, stations, buses, and more with ease.</p>
             </div>
             <div class="dashboard-header-actions">
-                <a href="routes/add-route.php" class="btn">
+                <a href="routes/
+add-route.php" class="btn">
                     <i class="fas fa-plus"></i> Add New Route
                 </a>
             </div>
