@@ -1,6 +1,6 @@
 <?php
-require_once '../../includes/auth-check.php';
-require_once '../../includes/db-config.php';
+require_once '../includes/auth-check.php';
+require_once '../includes/db-config.php';
 
 $routeId = $_GET['route_id'] ?? null;
 
