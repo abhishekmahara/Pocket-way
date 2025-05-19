@@ -12,6 +12,7 @@ include __DIR__ . '/../config.php';  // adjust path as needed
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
+      
       font-family: 'Segoe UI', sans-serif;
     }
     .navbar-brand {
@@ -26,6 +27,7 @@ include __DIR__ . '/../config.php';  // adjust path as needed
       color: #ffc107 !important;
     }
     .navbar {
+      background: linear-gradient(65deg, #007B7F ,rgb(1, 204, 207) );
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     .navbar-logo {

@@ -19,10 +19,8 @@
     }
 
     .article-wrapper {
-        background-color: #fff;
         padding: 50px;
         border-radius: 15px;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
     }
 
     .article-title {
@@ -43,7 +41,6 @@
     }
 
     .trek-box {
-        background: #ffffff;
         border-radius: 12px;
         padding: 25px;
         margin-bottom: 40px;

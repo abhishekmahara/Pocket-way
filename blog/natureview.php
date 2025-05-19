@@ -21,10 +21,10 @@
     }
 
     .article-wrapper {
-        background-color: #fff;
+       
         padding: 50px;
         border-radius: 15px;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      
     }
 
     .article-title {

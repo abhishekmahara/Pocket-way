@@ -18,12 +18,10 @@
     }
 
     .planner-container {
-        max-width: 1000px;
+        max-width: 1200px;
         margin: 40px auto;
-        background-color: #fff;
         border-radius: 15px;
         padding: 40px 30px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     }
 
     h1 {
@@ -57,7 +55,7 @@
     }
 
     button {
-        background-color: var(--primary-color);
+        background-color:  #007B7F;
         border: none;
         padding: 12px 25px;
         color: white;

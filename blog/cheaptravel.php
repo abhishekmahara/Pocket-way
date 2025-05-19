@@ -15,10 +15,8 @@
     }
 
     .article-wrapper {
-        background-color: #fff;
         padding: 50px 30px;
         border-radius: 15px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         
     }
 
