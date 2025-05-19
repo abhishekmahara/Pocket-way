@@ -180,8 +180,7 @@ try {
                 <p>Welcome back! Manage your routes, stations, buses, and more with ease.</p>
             </div>
             <div class="dashboard-header-actions">
-                <a href="routes/
-add-route.php" class="btn">
+                <a href="routes/add-route.php" class="btn">
                     <i class="fas fa-plus"></i> Add New Route
                 </a>
             </div>
@@ -195,7 +194,7 @@ add-route.php" class="btn">
                         <div class="stat-icon"><i class="fas fa-route"></i></div>
                         <div class="stat-label">Total Routes</div>
                         <div class="stat-value"><?php echo number_format($totalRoutes); ?></div>
-                        <a href="routes/manage-routes.php" class="stat-link mt-auto">Manage <i class="fas fa-arrow-right"></i></a>
+                        <a href="manage-routes.php" class="stat-link mt-auto">Manage <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -205,7 +204,7 @@ add-route.php" class="btn">
                         <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="stat-label">Total Stations</div>
                         <div class="stat-value"><?php echo number_format($totalStations); ?></div>
-                        <a href="stations/manage.php" class="stat-link mt-auto">Manage <i class="fas fa-arrow-right"></i></a>
+                        <a href="station.php" class="stat-link mt-auto">Manage <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -226,21 +225,21 @@ add-route.php" class="btn">
             <div class="quick-actions-title">Quick Actions</div>
             <div class="row quick-actions-row g-4">
                 <div class="col-md-3 col-6">
-                    <a href="routes/add-route.php" class="action-card">
+                    <a href="add-route.php" class="action-card">
                         <div class="action-icon primary"><i class="fas fa-plus-circle"></i></div>
                         <h3 class="h6 mb-1">Add Route</h3>
                         <p class="mb-0 small">Create a <b>completely new route</b> with all details: stations, fares, timings, buses, and map image.</p>
                     </a>
                 </div>
                 <div class="col-md-3 col-6">
-                    <a href="routes/manage-routes.php" class="action-card">
+                    <a href="manage-routes.php" class="action-card">
                         <div class="action-icon accent"><i class="fas fa-route"></i></div>
                         <h3 class="h6 mb-1">Manage Routes</h3>
                         <p class="mb-0 small"><b>Edit or manage everything</b> about existing routes: stations, fares, timings, buses, map images, and more.</p>
                     </a>
                 </div>
                 <div class="col-md-3 col-6">
-                    <a href="stations/manage.php" class="action-card">
+                    <a href="station.php" class="action-card">
                         <div class="action-icon secondary"><i class="fas fa-map-marked-alt"></i></div>
                         <h3 class="h6 mb-1">Stations</h3>
                         <p class="mb-0 small">Manage all bus stations in the system.</p>

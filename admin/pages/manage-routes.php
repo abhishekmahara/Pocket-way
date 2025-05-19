@@ -1,7 +1,7 @@
 <?php
-require_once '../../includes/auth-check.php';
-require_once '../../includes/db-config.php';
-require_once '../../includes/admin-header.php';
+require_once '../includes/auth-check.php';
+require_once '../includes/db-config.php';
+require_once '../includes/admin-header.php';
 
 $error = '';
 $success = '';
@@ -39,6 +39,7 @@ try {
                         <th>Destination</th>
                         <th>Total Distance (km)</th>
                         <th>Total Time</th>
+                        <th>Fare (₹)</th> <!-- New Fare column -->
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -51,6 +52,7 @@ try {
                                 <td><?php echo htmlspecialchars($route['destination']); ?></td>
                                 <td><?php echo htmlspecialchars($route['total_distance']); ?></td>
                                 <td><?php echo htmlspecialchars($route['total_time']); ?></td>
+                                <td><?php echo htmlspecialchars($route['fare']); ?></td> <!-- Display Fare -->
                                 <td>
                                     <a href="edit-route.php?route_id=<?php echo $route['route_id']; ?>" class="btn btn-warning btn-sm">
                                         <i class="fas fa-edit"></i> Edit
@@ -63,7 +65,7 @@ try {
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="6" class="text-center">No routes found.</td>
+                            <td colspan="7" class="text-center">No routes found.</td> <!-- Updated colspan -->
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -72,4 +74,4 @@ try {
     </div>
 </div>
 
-<?php require_once '../../includes/admin-footer.php'; ?>
+<?php require_once '../includes/admin-footer.php'; ?>

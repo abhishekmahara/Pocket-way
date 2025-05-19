@@ -1,11 +1,15 @@
 <?php
-require_once '../../includes/auth-check.php';
-require_once '../../includes/db-config.php';
-require_once '../../includes/admin-header.php';
+require_once '../includes/auth-check.php';
+require_once '../includes/db-config.php';
+require_once '../includes/admin-header.php';
 
 $routeId = $_GET['route_id'] ?? null;
 $error = '';
 $success = '';
+$route = null;
+$stations = [];
+$buses = [];
+$fares = [];
 
 // Fetch route details
 if ($routeId) {
@@ -28,10 +32,11 @@ if ($routeId) {
         $busStmt->execute([$routeId]);
         $buses = $busStmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Fetch fares
+        // Fetch fares (if using a separate table)
         $fareStmt = $pdo->prepare("SELECT * FROM route_fares WHERE route_id = ?");
         $fareStmt->execute([$routeId]);
         $fares = $fareStmt->fetchAll(PDO::FETCH_ASSOC);
+
     } catch (Exception $e) {
         $error = 'Error fetching route details: ' . $e->getMessage();
     }
@@ -66,6 +71,7 @@ if ($routeId) {
                             <input type="text" class="form-control" name="destination" value="<?php echo htmlspecialchars($route['destination']); ?>" required>
                         </div>
                     </div>
+
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label>Total Distance (km)</label>
@@ -76,30 +82,39 @@ if ($routeId) {
                             <input type="text" class="form-control" name="total_time" value="<?php echo htmlspecialchars($route['total_time']); ?>" required>
                         </div>
                     </div>
+
+                    <!-- Fare Input -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label>Fare (₹)</label>
+                            <input type="number" class="form-control" name="fare" value="<?php echo htmlspecialchars($route['fare'] ?? ''); ?>" step="0.01" required>
+                        </div>
+                    </div>
+
                     <div class="row mb-3">
                         <div class="col-md-12">
                             <label>Route Description</label>
                             <textarea class="form-control" name="route_description" rows="3"><?php echo htmlspecialchars($route['route_description']); ?></textarea>
                         </div>
                     </div>
+
                     <div class="row mb-3">
                         <div class="col-md-12">
                             <label>Route Map</label>
                             <input type="file" class="form-control" name="route_map" accept="image/*">
-                            <?php if ($route['route_map_url']): ?>
-                                <img src="../../../uploads/maps/<?php echo $route['route_map_url']; ?>" alt="Route Map" class="img-fluid mt-2" style="max-height: 200px;">
+                            <?php if (!empty($route['route_map_url'])): ?>
+                                <img src="../uploads/maps/<?php echo $route['route_map_url']; ?>" alt="Route Map" class="img-fluid mt-2" style="max-height: 200px;">
                             <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Stations, Buses, and Fares -->
-            <!-- Add dynamic forms for stations, buses, and fares here -->
+            <!-- Additional forms for Stations, Buses, Fares can go here -->
 
             <button type="submit" class="btn btn-primary">Update Route</button>
         </form>
     <?php endif; ?>
 </div>
 
-<?php require_once '../../includes/admin-footer.php'; ?>
+<?php require_once '../includes/admin-footer.php'; ?>

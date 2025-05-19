@@ -15,16 +15,7 @@
             <div class="col-md-4 text-center">
                 <p class="text-white mb-0">&copy; <?php echo date('Y'); ?> Pocket-way. All rights reserved.</p>
             </div>
-            <div class="col-md-4">
-                <div class="d-flex justify-content-end">
-                    <a href="#" class="text-white me-3" style="text-decoration: none;">
-                        <i class="fas fa-question-circle"></i> Help
-                    </a>
-                    <a href="#" class="text-white" style="text-decoration: none;">
-                        <i class="fas fa-envelope"></i> Support
-                    </a>
-                </div>
-            </div>
+           
         </div>
     </div>
 </footer>
