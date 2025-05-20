@@ -116,26 +116,36 @@ require_once '../includes/admin-header.php';
 }
 
 .alert {
-    border-radius: var(--radius);
-    padding: 1rem 1.5rem;
-    margin-bottom: 2rem;
-    border: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    min-width: 300px;
+    animation: slideIn 0.5s ease-out;
 }
 
-.alert-success {
-    background: #d4edda;
-    color: #155724;
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
-.alert-danger {
-    background: #f8d7da;
-    color: #721c24;
+.image-preview {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.route-map-preview {
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    margin: 1rem 0;
+.upload-status {
+    margin-top: 10px;
+    font-size: 0.9rem;
 }
 
 .form-check-input:checked {
@@ -160,12 +170,12 @@ $error = '';
 $success = '';
 
 // Verify route exists
-try {
-    $stmt = $pdo->prepare("SELECT * FROM main_routes WHERE route_id = ?");
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM main_routes WHERE route_id = ?");
     $stmt->execute([$route_id]);
-    $route = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    if (!$route) {
+        $route = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$route) {
         header("Location: manage-routes.php?error=Route not found");
         exit;
     }
@@ -195,30 +205,110 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $route_id
         ]);
 
-        // Handle route map upload only if a new file is provided
-        if (isset($_FILES['route_map']) && $_FILES['route_map']['error'] === UPLOAD_ERR_OK) {
-            $upload_dir = '../uploads/route_maps/';
-            if (!file_exists($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
+        // Handle route map upload
+        if (isset($_FILES['route_map'])) {
+            error_log("Route map upload detected");
+            error_log("File details: " . print_r($_FILES['route_map'], true));
+            
+            if ($_FILES['route_map']['error'] !== UPLOAD_ERR_OK) {
+                $error_message = getUploadErrorMessage($_FILES['route_map']['error']);
+                error_log("Upload error: " . $error_message);
+                throw new Exception("Upload failed: " . $error_message);
             }
-
-            $file_extension = strtolower(pathinfo($_FILES['route_map']['name'], PATHINFO_EXTENSION));
-            $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
-
-            if (in_array($file_extension, $allowed_extensions)) {
-                $new_filename = uniqid() . '.' . $file_extension;
-                $upload_path = $upload_dir . $new_filename;
-
-                if (move_uploaded_file($_FILES['route_map']['tmp_name'], $upload_path)) {
-                    // Delete old map file if exists
-                    if ($route['route_map_url'] && file_exists('../' . $route['route_map_url'])) {
-                        unlink('../' . $route['route_map_url']);
-                    }
-                    
-                    $stmt = $pdo->prepare("UPDATE main_routes SET route_map_url = ? WHERE route_id = ?");
-                    $stmt->execute(['uploads/route_maps/' . $new_filename, $route_id]);
+            
+            try {
+                // Use absolute path for uploads
+                $base_path = '/Applications/XAMPP/xamppfiles/htdocs/Pocket-way';
+                $upload_dir = $base_path . '/uploads/route_maps/';
+                
+                // Debug information
+                error_log("Starting file upload process");
+                error_log("Upload Directory: " . $upload_dir);
+                
+                // Verify file type
+                $file_extension = strtolower(pathinfo($_FILES['route_map']['name'], PATHINFO_EXTENSION));
+                $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
+                
+                error_log("File extension: " . $file_extension);
+                
+                if (!in_array($file_extension, $allowed_extensions)) {
+                    throw new Exception("Invalid file type. Allowed types: " . implode(', ', $allowed_extensions));
                 }
+                
+                // Check file size (limit to 5MB)
+                if ($_FILES['route_map']['size'] > 5 * 1024 * 1024) {
+                    throw new Exception("File size exceeds 5MB limit.");
+                }
+                
+                error_log("File size: " . $_FILES['route_map']['size'] . " bytes");
+                
+                // Generate unique filename
+                $new_filename = 'route_' . $route_id . '_' . time() . '.' . $file_extension;
+                $upload_path = $upload_dir . $new_filename;
+                
+                error_log("Target path: " . $upload_path);
+                
+                // Ensure upload directory exists and is writable
+                if (!file_exists($upload_dir)) {
+                    error_log("Creating upload directory");
+                    if (!mkdir($upload_dir, 0777, true)) {
+                        throw new Exception("Failed to create upload directory. Please check directory permissions.");
+                    }
+                    chmod($upload_dir, 0777);
+                }
+                
+                if (!is_writable($upload_dir)) {
+                    error_log("Upload directory not writable, attempting to fix permissions");
+                    chmod($upload_dir, 0777);
+                    if (!is_writable($upload_dir)) {
+                        throw new Exception("Upload directory is not writable. Please check directory permissions.");
+                    }
+                }
+                
+                // Create a temporary file to test write permissions
+                $test_file = $upload_dir . 'test_' . time() . '.txt';
+                error_log("Testing write permissions with file: " . $test_file);
+                if (!file_put_contents($test_file, 'test')) {
+                    throw new Exception("Cannot write to upload directory. Please check permissions.");
+                }
+                unlink($test_file);
+                
+                // Move the uploaded file
+                error_log("Moving uploaded file from: " . $_FILES['route_map']['tmp_name'] . " to: " . $upload_path);
+                if (!move_uploaded_file($_FILES['route_map']['tmp_name'], $upload_path)) {
+                    $error = error_get_last();
+                    error_log("Upload Error: " . print_r($error, true));
+                    throw new Exception("Failed to move uploaded file. Error: " . ($error ? $error['message'] : 'Unknown error'));
+                }
+                
+                // Set file permissions
+                chmod($upload_path, 0666);
+                error_log("File permissions set to 0666");
+                
+                // Delete old map file if exists
+                if ($route['route_map_url']) {
+                    $old_file = $base_path . '/' . $route['route_map_url'];
+                    error_log("Checking for old file: " . $old_file);
+                    if (file_exists($old_file)) {
+                        error_log("Deleting old file");
+                        unlink($old_file);
+                    }
+                }
+                
+                // Update database with new map URL
+                $map_url = 'uploads/route_maps/' . $new_filename;
+                error_log("Updating database with new map URL: " . $map_url);
+                $stmt = $pdo->prepare("UPDATE main_routes SET route_map_url = ? WHERE route_id = ?");
+                $stmt->execute([$map_url, $route_id]);
+                
+                error_log("File upload process completed successfully");
+                
+            } catch (Exception $e) {
+                error_log("Upload Error: " . $e->getMessage());
+                throw new Exception("Upload failed: " . $e->getMessage());
             }
+        } else {
+            error_log("No file upload detected in request");
         }
 
         // Update stations only if station data is provided
@@ -332,8 +422,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $pdo->commit();
-        header("Location: manage-routes.php?success=Route updated successfully");
-        exit;
+        $success = "Route updated successfully";
+        
+        // Redirect after a short delay to show success message
+        echo "<script>
+            setTimeout(function() {
+                window.location.href = 'manage-routes.php?success=Route updated successfully';
+            }, 2000);
+        </script>";
+
     } catch (Exception $e) {
         $pdo->rollBack();
         $error = "Error updating route: " . $e->getMessage();
@@ -375,7 +472,21 @@ try {
 
 // Include the form HTML
 include 'route-form.php';
-?>
+
+// Add this at the top of your form
+if ($success): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> <?= htmlspecialchars($success) ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php endif; ?>
+
+    <?php if ($error): ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle"></i> <?= htmlspecialchars($error) ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php endif; ?>
 
 <script>
 function addStationRow() {
@@ -403,12 +514,12 @@ function addStationRow() {
             <div class="col-md-2">
                 <label class="form-label">Fare (₹)</label>
                 <input type="number" step="0.01" class="form-control" name="fare[]">
-            </div>
+                        </div>
             <div class="col-md-2">
                 <label class="form-label">Arrival Time</label>
                 <input type="time" class="form-control" name="arrival_time[]">
-            </div>
-        </div>
+                        </div>
+                    </div>
         <div class="row mt-2">
             <div class="col-md-2">
                 <label class="form-label">Departure Time</label>
@@ -426,14 +537,14 @@ function addStationRow() {
                 <label class="form-label">Longitude</label>
                 <input type="number" step="0.00000001" class="form-control" name="longitude[]">
             </div>
-        </div>
+                        </div>
         <div class="row mt-2">
             <div class="col-md-2">
                 <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.station-row').remove()">
                     <i class="fas fa-trash"></i> Remove
                 </button>
-            </div>
-        </div>
+                        </div>
+                    </div>
     `;
     container.appendChild(row);
 }
@@ -471,15 +582,15 @@ function addBusRow() {
             <div class="col-md-2">
                 <label class="form-label">Operating Days</label>
                 <input type="text" class="form-control" name="operating_days[]">
-            </div>
-        </div>
+                        </div>
+                    </div>
         <div class="row mt-2">
             <div class="col-md-2">
                 <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.bus-row').remove()">
                     <i class="fas fa-trash"></i> Remove
                 </button>
-            </div>
-        </div>
+                        </div>
+                    </div>
     `;
     container.appendChild(row);
 }
@@ -510,8 +621,8 @@ function addContactRow() {
                 <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.contact-row').remove()">
                     <i class="fas fa-trash"></i>
                 </button>
-            </div>
-        </div>
+                        </div>
+                    </div>
     `;
     container.appendChild(row);
 }
@@ -538,7 +649,7 @@ function addMediaRow() {
             <div class="col-md-4">
                 <label class="form-label">Caption</label>
                 <input type="text" class="form-control" name="caption[]">
-            </div>
+                </div>
             <div class="col-md-1 d-flex align-items-end">
                 <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.media-row').remove()">
                     <i class="fas fa-trash"></i>
@@ -548,6 +659,97 @@ function addMediaRow() {
     `;
     container.appendChild(row);
 }
+
+function previewImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            var preview = document.getElementById('imagePreview');
+            if (!preview) {
+                preview = document.createElement('img');
+                preview.id = 'imagePreview';
+                preview.className = 'image-preview';
+                input.parentNode.appendChild(preview);
+            }
+            preview.src = e.target.result;
+            
+            // Add upload status
+            var status = document.getElementById('uploadStatus');
+            if (!status) {
+                status = document.createElement('div');
+                status.id = 'uploadStatus';
+                status.className = 'upload-status text-success';
+                input.parentNode.appendChild(status);
+            }
+            status.innerHTML = '<i class="fas fa-check-circle"></i> Image selected';
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// Add this to your existing form's file input
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.querySelector('input[type="file"][name="route_map"]');
+    const imagePreview = document.getElementById('imagePreview');
+    
+    if (fileInput) {
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                // Check file size
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File size exceeds 5MB limit');
+                    this.value = '';
+                    return;
+                }
+                
+                // Check file type
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Invalid file type. Please upload JPG, PNG, or GIF');
+                    this.value = '';
+                    return;
+                }
+                
+                // Show preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.innerHTML = `
+                        <div class="alert alert-info">
+                            <img src="${e.target.result}" class="img-thumbnail" style="max-width: 200px; max-height: 150px;">
+                            <p class="mt-2 mb-0">Selected file: ${file.name}</p>
+</div>
+                    `;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+});
 </script>
 
 <?php require_once '../includes/admin-footer.php'; ?>
+
+<?php
+function getUploadErrorMessage($error_code) {
+    switch ($error_code) {
+        case UPLOAD_ERR_INI_SIZE:
+            return 'The uploaded file exceeds the upload_max_filesize directive in php.ini';
+        case UPLOAD_ERR_FORM_SIZE:
+            return 'The uploaded file exceeds the MAX_FILE_SIZE directive in the HTML form';
+        case UPLOAD_ERR_PARTIAL:
+            return 'The uploaded file was only partially uploaded';
+        case UPLOAD_ERR_NO_FILE:
+            return 'No file was uploaded';
+        case UPLOAD_ERR_NO_TMP_DIR:
+            return 'Missing a temporary folder';
+        case UPLOAD_ERR_CANT_WRITE:
+            return 'Failed to write file to disk';
+        case UPLOAD_ERR_EXTENSION:
+            return 'A PHP extension stopped the file upload';
+        default:
+            return 'Unknown upload error';
+    }
+}

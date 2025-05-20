@@ -82,8 +82,21 @@ try {
                     </div>
                     <div class="col-md-4">
                         <?php if ($route['route_map_url']): ?>
-                            <img src="<?= htmlspecialchars($route['route_map_url']) ?>" 
-                                 alt="Route Map" class="img-fluid rounded shadow">
+                            <?php
+                            // Ensure the path starts with /Pocket-way/
+                            $image_path = $route['route_map_url'];
+                            if (!str_starts_with($image_path, '/Pocket-way/')) {
+                                $image_path = '/Pocket-way/' . ltrim($image_path, '/');
+                            }
+                            ?>
+                            <img src="<?= htmlspecialchars($image_path) ?>" 
+                                 alt="Route Map" 
+                                 class="img-fluid rounded shadow"
+                                 onerror="console.log('Failed to load: <?= htmlspecialchars($image_path) ?>')">
+                        <?php else: ?>
+                            <div class="alert alert-info">
+                                No route map available
+                            </div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -434,7 +447,7 @@ try {
     padding: 3rem;
     border-radius: 1rem;
     margin-bottom: 2rem;
-}
+    }
 
 .route-stat {
     background: white;
@@ -516,13 +529,13 @@ try {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 0.5rem;
-}
+    }
 
 .contact-item {
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 0.5rem;
-}
+    }
 
 .contact-item:not(:last-child) {
     margin-bottom: 1rem;
@@ -541,9 +554,9 @@ try {
 }
 
 .card-header h5 {
-    color: var(--primary-color);
+        color: var(--primary-color);
     margin: 0;
-}
+    }
 
 .card-body {
     padding: 1.5rem;
