@@ -1,8 +1,17 @@
-<?php include 'includes/header.php'; ?>
+<?php include 'includes/header.php';
+require_once 'admin/includes/db-config.php';
 
+// Get unique sources and destinations
+try {
+    $sources = $pdo->query("SELECT DISTINCT source FROM main_routes WHERE is_active = 1 ORDER BY source")->fetchAll(PDO::FETCH_COLUMN);
+    $destinations = $pdo->query("SELECT DISTINCT destination FROM main_routes WHERE is_active = 1 ORDER BY destination")->fetchAll(PDO::FETCH_COLUMN);
+} catch (Exception $e) {
+    $sources = [];
+    $destinations = [];
+}
+?>
 
-
- <main>
+<main>
     <style>
     :root {
       --primary-color: #007B7F;
@@ -94,27 +103,26 @@
       <h1>Explore Uttarakhand the Smart way</h1>
       <p>Plan your journey with affordable public transport.</p>
       <form class="row justify-content-center" method="GET" action="search_routes.php">
-  <div class="col-md-3">
-    <select class="form-select2 form-control" id="from" name="from">
-      <option value="">From</option>
-      <option value="Haldwani">Haldwani</option>
-      <option value="Haridwar">Haridwar</option>
-      <option value="Dehradun">Dehradun</option>
-    </select>
-  </div>
-  <div class="col-md-3">
-    <select class="form-select2 form-control" id="to" name="to">
-      <option value="">To</option>
-      <option value="Adi Kailash">Adi Kailash</option>
-      <option value="Kedarnath">Kedarnath</option>
-      <option value="Mussoorie">Mussoorie</option>
-      <option value="Rishikesh">Rishikesh</option>
-    </select>
-  </div>
-  <div class="col-md-2">
-    <button class="btn btn-warning w-100" type="submit">Search</button>
-  </div>
-</form>
+        <div class="col-md-3">
+          <select class="form-select2 form-control" id="from" name="from" required>
+            <option value="">From</option>
+            <?php foreach ($sources as $source): ?>
+              <option value="<?= htmlspecialchars($source) ?>"><?= htmlspecialchars($source) ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select class="form-select2 form-control" id="to" name="to" required>
+            <option value="">To</option>
+            <?php foreach ($destinations as $destination): ?>
+              <option value="<?= htmlspecialchars($destination) ?>"><?= htmlspecialchars($destination) ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-warning w-100" type="submit">Search</button>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -275,7 +283,7 @@
                     <img src="https://plus.unsplash.com/premium_photo-1688645554172-d3aef5f837ce?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Nature Spots">
                     <div class="card-body">
                         <h5 class="card-title">Must-See Landscapes in Uttarakhand</h5>
-                        <p class="card-text">Explore Uttarakhand’s iconic landscapes, highlighting the region's natural beauty.</p>
+                        <p class="card-text">Explore Uttarakhand's iconic landscapes, highlighting the region's natural beauty.</p>
                         <a href="blog\natureview.php" class="read-more">Read More </a>
                     </div>
                 </div>

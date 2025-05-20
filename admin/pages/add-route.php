@@ -1,196 +1,155 @@
 <?php
-require_once '../../includes/auth-check.php';
-require_once '../../includes/db-config.php';
-require_once '../../includes/admin-header.php';
+require_once '../includes/auth-check.php';
+require_once '../includes/db-config.php';
+require_once '../includes/admin-header.php';
 
-$error = '';
-$success = '';
+$message = '';
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
+        // Start transaction
         $pdo->beginTransaction();
 
-        // Insert main route
-        $stmt = $pdo->prepare("
-            INSERT INTO main_routes (source, destination, total_distance, total_time, route_map_url, route_description, is_active)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ");
-
-        $mapFileName = null;
-        if (isset($_FILES['route_map']) && $_FILES['route_map']['error'] === 0) {
-            $mapFileName = time() . '_' . $_FILES['route_map']['name'];
-            move_uploaded_file($_FILES['route_map']['tmp_name'], '../../../uploads/maps/' . $mapFileName);
-        }
-
+  // Insert main route
+        $stmt = $pdo->prepare("INSERT INTO main_routes (source, destination, total_distance, total_time, route_description, is_active, created_at) 
+                              VALUES (?, ?, ?, ?, ?, ?, NOW())");
+        
         $stmt->execute([
             $_POST['source'],
             $_POST['destination'],
             $_POST['total_distance'],
             $_POST['total_time'],
-            $mapFileName,
             $_POST['route_description'],
-            1
+            isset($_POST['is_active']) ? 1 : 0
         ]);
 
-        $routeId = $pdo->lastInsertId();
+        $route_id = $pdo->lastInsertId();
 
-        // Insert stations
-        if (!empty($_POST['stations'])) {
-            $stationStmt = $pdo->prepare("
-                INSERT INTO route_stations (route_id, station_name, sequence_number, distance_from_prev, distance_from_source, arrival_time, departure_time, facilities, latitude, longitude)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ");
+        // Handle route map upload
+        if (isset($_FILES['route_map']) && $_FILES['route_map']['error'] === UPLOAD_ERR_OK) {
+            $upload_dir = '../uploads/route_maps/';
+            if (!file_exists($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
+            }
 
-            foreach ($_POST['stations'] as $index => $station) {
-                $stationStmt->execute([
-                    $routeId,
-                    $station['name'],
-                    $index + 1,
-                    $station['distance_from_prev'],
-                    $station['distance_from_source'],
-                    $station['arrival_time'],
-                    $station['departure_time'],
-                    $station['facilities'],
-                    $station['latitude'],
-                    $station['longitude']
-                ]);
+            $file_extension = strtolower(pathinfo($_FILES['route_map']['name'], PATHINFO_EXTENSION));
+            $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
+
+            if (in_array($file_extension, $allowed_extensions)) {
+                $new_filename = uniqid() . '.' . $file_extension;
+                $upload_path = $upload_dir . $new_filename;
+
+                if (move_uploaded_file($_FILES['route_map']['tmp_name'], $upload_path)) {
+                    $stmt = $pdo->prepare("UPDATE main_routes SET route_map_url = ? WHERE route_id = ?");
+                    $stmt->execute(['uploads/route_maps/' . $new_filename, $route_id]);
+                }
             }
         }
 
-        // Insert buses
-        if (!empty($_POST['buses'])) {
-            $busStmt = $pdo->prepare("
-                INSERT INTO bus_services (route_id, bus_number, bus_type, seating_capacity, departure_time, arrival_time, operating_days)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            ");
+    // Insert stations
+    if (isset($_POST['station_name']) && is_array($_POST['station_name'])) {
+            $stmt = $pdo->prepare("INSERT INTO route_stations (route_id, station_name, sequence_number, 
+                distance_from_prev, distance_from_source, arrival_time, departure_time, 
+                facilities, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            foreach ($_POST['buses'] as $bus) {
-                $busStmt->execute([
-                    $routeId,
-                    $bus['bus_number'],
-                    $bus['bus_type'],
-                    $bus['seating_capacity'],
-                    $bus['departure_time'],
-                    $bus['arrival_time'],
-                    $bus['operating_days']
-                ]);
+            for ($i = 0; $i < count($_POST['station_name']); $i++) {
+                if (!empty($_POST['station_name'][$i])) {
+                    $arrival_time = !empty($_POST['arrival_time'][$i]) ? $_POST['arrival_time'][$i] : null;
+                    $departure_time = !empty($_POST['departure_time'][$i]) ? $_POST['departure_time'][$i] : null;
+                    
+                    $stmt->execute([
+                        $route_id,
+                        $_POST['station_name'][$i],
+                        $_POST['sequence_number'][$i],
+                        $_POST['distance_from_prev'][$i] ?? null,
+                        $_POST['distance_from_source'][$i] ?? null,
+                        $arrival_time,
+                        $departure_time,
+                        $_POST['facilities'][$i] ?? null,
+                        $_POST['latitude'][$i] ?? null,
+                        $_POST['longitude'][$i] ?? null
+                    ]);
+
+                    // Insert fare for this station
+                    if (!empty($_POST['fare'][$i])) {
+                        $stmt_fare = $pdo->prepare("INSERT INTO route_fares (route_id, from_station_id, to_station_id, fare_amount) 
+                                                  VALUES (?, ?, ?, ?)");
+                        $stmt_fare->execute([
+                            $route_id,
+                            $pdo->lastInsertId(), // Current station ID
+                            null, // To be updated when next station is added
+                            $_POST['fare'][$i]
+                        ]);
+                    }
+                }
             }
         }
 
-        // Insert fares
-        if (!empty($_POST['fares'])) {
-            $fareStmt = $pdo->prepare("
-                INSERT INTO route_fares (route_id, from_station_id, to_station_id, fare_amount)
-                VALUES (?, ?, ?, ?)
-            ");
+        // Insert bus services
+        if (isset($_POST['bus_number']) && is_array($_POST['bus_number'])) {
+            $stmt = $pdo->prepare("INSERT INTO bus_services (route_id, bus_number, bus_type, 
+                seating_capacity, departure_time, arrival_time, operating_days) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-            foreach ($_POST['fares'] as $fare) {
-                $fareStmt->execute([
-                    $routeId,
-                    $fare['from_station_id'],
-                    $fare['to_station_id'],
-                    $fare['fare_amount']
-                ]);
+            for ($i = 0; $i < count($_POST['bus_number']); $i++) {
+                if (!empty($_POST['bus_number'][$i])) {
+                    $stmt->execute([
+                        $route_id,
+                        $_POST['bus_number'][$i],
+                        $_POST['bus_type'][$i],
+                        $_POST['seating_capacity'][$i] ?? null,
+                        $_POST['bus_departure_time'][$i],
+                        $_POST['bus_arrival_time'][$i],
+                        $_POST['operating_days'][$i] ?? null
+                    ]);
+                }
+            }
+    }
+
+        // Insert emergency contacts
+        if (isset($_POST['contact_name']) && is_array($_POST['contact_name'])) {
+            $stmt = $pdo->prepare("INSERT INTO emergency_contacts (route_id, station_id, contact_name, 
+                contact_number, contact_type) VALUES (?, ?, ?, ?, ?)");
+
+            for ($i = 0; $i < count($_POST['contact_name']); $i++) {
+                if (!empty($_POST['contact_name'][$i]) && !empty($_POST['contact_number'][$i])) {
+                    $stmt->execute([
+                        $route_id,
+                        $_POST['contact_station_id'][$i] ?? null,
+                        $_POST['contact_name'][$i],
+                        $_POST['contact_number'][$i],
+                        $_POST['contact_type'][$i] ?? null
+                    ]);
+                }
             }
         }
+
+        // Insert media
+        if (isset($_POST['media_type']) && is_array($_POST['media_type'])) {
+            $stmt = $pdo->prepare("INSERT INTO route_media (route_id, media_type, file_url, caption) 
+                VALUES (?, ?, ?, ?)");
+
+            for ($i = 0; $i < count($_POST['media_type']); $i++) {
+                if (!empty($_POST['file_url'][$i])) {
+                    $stmt->execute([
+                        $route_id,
+                        $_POST['media_type'][$i],
+                        $_POST['file_url'][$i],
+                        $_POST['caption'][$i] ?? null
+                    ]);
+  }
+            }
+}
 
         $pdo->commit();
-        $success = 'Route added successfully!';
+        header("Location: manage-routes.php?success=Route added successfully");
+        exit;
     } catch (Exception $e) {
         $pdo->rollBack();
-        $error = 'Error adding route: ' . $e->getMessage();
-    }
+        $message = "Error adding route: " . $e->getMessage();
+  }
 }
+
+// Include the form HTML
+include 'route-form.php';
 ?>
-
-<div class="container-fluid px-4">
-    <h1 class="mt-4">Add New Route</h1>
-    <?php if ($error): ?>
-        <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
-    <?php elseif ($success): ?>
-        <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
-    <?php endif; ?>
-
-    <form method="POST" action="" enctype="multipart/form-data">
-        <!-- Route Details -->
-        <div class="card mb-4">
-            <div class="card-header">Route Details</div>
-            <div class="card-body">
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label>Source</label>
-                        <input type="text" class="form-control" name="source" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label>Destination</label>
-                        <input type="text" class="form-control" name="destination" required>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label>Total Distance (km)</label>
-                        <input type="number" class="form-control" name="total_distance" step="0.1" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label>Total Time</label>
-                        <input type="text" class="form-control" name="total_time" required>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <label>Route Description</label>
-                        <textarea class="form-control" name="route_description" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <label>Route Map</label>
-                        <input type="file" class="form-control" name="route_map" accept="image/*">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Stations -->
-        <div class="card mb-4">
-            <div class="card-header">Stations</div>
-            <div class="card-body">
-                <div id="stations-container">
-                    <!-- Stations will be added dynamically -->
-                </div>
-                <button type="button" class="btn btn-success" id="add-station">Add Station</button>
-            </div>
-        </div>
-
-        <!-- Buses -->
-        <div class="card mb-4">
-            <div class="card-header">Buses</div>
-            <div class="card-body">
-                <div id="buses-container">
-                    <!-- Buses will be added dynamically -->
-                </div>
-                <button type="button" class="btn btn-info" id="add-bus">Add Bus</button>
-            </div>
-        </div>
-
-        <!-- Fares -->
-        <div class="card mb-4">
-            <div class="card-header">Fares</div>
-            <div class="card-body">
-                <div id="fares-container">
-                    <!-- Fares will be added dynamically -->
-                </div>
-                <button type="button" class="btn btn-warning" id="add-fare">Add Fare</button>
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Save Route</button>
-    </form>
-</div>
-
-<script>
-    // JavaScript for dynamically adding stations, buses, and fares
-</script>
-
-<?php require_once '../includes/admin-footer.php'; ?>
