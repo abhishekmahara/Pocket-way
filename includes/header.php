@@ -1,7 +1,7 @@
 <?php
-// Make sure config.php is included so $logo_url is defined
-include __DIR__ . '/../config.php';  // adjust path as needed
+include __DIR__ . '/../config.php';  
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +42,8 @@ include __DIR__ . '/../config.php';  // adjust path as needed
 
 <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #007B7F; padding: 1.2rem 0;">
   <div class="container">
-  <img src="../assets/img/logoo.png" class="navbar-logo" alt="Logo">
+      <img src="<?php echo $logo_url; ?>" alt="Pocket Way Logo" class="navbar-logo" />
+ 
     
     <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
