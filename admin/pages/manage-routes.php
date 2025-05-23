@@ -3,8 +3,24 @@ require_once '../includes/auth-check.php';
 require_once '../includes/db-config.php';
 require_once '../includes/admin-header.php';
 
+// Start session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $error = '';
 $success = '';
+
+// Check for session messages
+if (isset($_SESSION['success_message'])) {
+    $success = $_SESSION['success_message'];
+    unset($_SESSION['success_message']);
+}
+
+if (isset($_SESSION['error_message'])) {
+    $error = $_SESSION['error_message'];
+    unset($_SESSION['error_message']);
+}
 
 // Handle route deletion
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
@@ -24,10 +40,14 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
         $pdo->prepare("DELETE FROM main_routes WHERE route_id = ?")->execute([$route_id]);
         
         $pdo->commit();
-        $success = "Route deleted successfully!";
+        $_SESSION['success_message'] = "Route deleted successfully!";
+        header("Location: manage-routes.php");
+        exit;
     } catch (Exception $e) {
         $pdo->rollBack();
-        $error = "Error deleting route: " . $e->getMessage();
+        $_SESSION['error_message'] = "Error deleting route: " . $e->getMessage();
+        header("Location: manage-routes.php");
+        exit;
     }
 }
 
@@ -237,15 +257,27 @@ try {
         </div>
 
         <?php if ($error): ?>
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-circle"></i> <?= htmlspecialchars($error) ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 1050; min-width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <i class="fas fa-exclamation-circle me-2"></i> <?= htmlspecialchars($error) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            <script>
+                setTimeout(function() {
+                    document.querySelector('.alert-danger').classList.remove('show');
+                }, 8000);
+            </script>
         <?php endif; ?>
 
         <?php if ($success): ?>
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i> <?= htmlspecialchars($success) ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 1050; min-width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <i class="fas fa-check-circle me-2"></i> <?= htmlspecialchars($success) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            <script>
+                setTimeout(function() {
+                    document.querySelector('.alert-success').classList.remove('show');
+                }, 5000);
+            </script>
         <?php endif; ?>
 
         <div class="card">
