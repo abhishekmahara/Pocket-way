@@ -159,7 +159,7 @@
         </div>
     <?php endif; ?>
 
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data" id="routeForm">
         <!-- Main Route Details -->
         <div class="card mb-4">
             <div class="card-header">
@@ -217,10 +217,12 @@
                     <?php if (isset($route['route_map_url']) && $route['route_map_url']): ?>
                         <div class="mb-2">
                             <img src="<?= htmlspecialchars($route['route_map_url']) ?>" alt="Current Route Map" 
-                                 style="max-width: 200px; max-height: 150px;">
+                                 class="img-thumbnail" style="max-width: 200px; max-height: 150px;">
                         </div>
                     <?php endif; ?>
                     <input type="file" class="form-control" id="route_map" name="route_map" accept="image/*">
+                    <small class="form-text text-muted">Allowed formats: JPG, JPEG, PNG, GIF. Max size: 5MB</small>
+                    <div id="imagePreview" class="mt-2"></div>
                 </div>
                 <div class="mb-3">
                     <div class="form-check">
