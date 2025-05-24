@@ -128,7 +128,7 @@ if (isset($_SESSION['admin_id'])) {
 </head>
 <body>
     <div class="welcome-card">
-        <img src="../assets/img/logoo.png" alt="Pocket-way Logo" class="welcome-logo">
+        <img src="../assets/img/logoo_teal.png" alt="Pocket-way Logo" class="welcome-logo">
         <h1 class="welcome-title">Welcome to Pocket-way Admin</h1>
         <p class="welcome-subtitle">Manage your transport network efficiently and effectively</p>
         

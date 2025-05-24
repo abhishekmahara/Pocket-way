@@ -163,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="login-card">
         <div class="text-center mb-4">
-            <img src="../assets/img/logoo.png" alt="Pocket-way Logo" class="login-logo">
+            <img src="../../assets/img/logoo_teal.png" alt="Pocket-way Logo" class="login-logo">
             <h4>Welcome Back</h4>
             <p class="text-muted">Please login to continue</p>
         </div>
