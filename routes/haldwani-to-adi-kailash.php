@@ -765,22 +765,17 @@ try {
 .badge {
     padding: 0.6rem 1rem;
     font-weight: 500;
-    border-radius: 2rem;
+    border-radius: .5rem;
     font-size: 0.9rem;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     transition: var(--transition);
-    background: var(--light-bg);
-    color: var(--primary-color);
-    border: 1px solid rgba(0, 99, 102, 0.2);
+    background: linear-gradient(65deg,#F9A825 ,rgb(207, 185, 17) );
+    color: white;
+    border:none;
 }
 
-.badge:hover {
-    transform: translateY(-2px);
-    background: var(--accent-color);
-    color: white;
-}
 
 .badge i {
     font-size: 1rem;

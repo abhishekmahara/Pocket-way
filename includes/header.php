@@ -27,7 +27,8 @@ include __DIR__ . '/../config.php';
       color: #ffc107 !important;
     }
     .navbar {
-      background: linear-gradient(65deg, #007B7F ,rgb(1, 204, 207) );
+    background: linear-gradient(135deg, #006366,rgb(56, 132, 125));
+     
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     .navbar-logo {
@@ -57,6 +58,10 @@ include __DIR__ . '/../config.php';
         <li class="nav-item">
           <a class="nav-link text-white fs-5 px-3" href="<?php echo $base_url; ?>trip_planner.php">Trip Planner</a>
         </li>
+        <li class="nav-item"> 
+         <a class="nav-link text-white fs-5 px-3" href="<?php echo $base_url; ?>#travel-tips">Travel Tips</a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link text-white fs-5 px-3" href="<?php echo $base_url; ?>about us.php">About Us</a>
         </li>

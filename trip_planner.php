@@ -217,10 +217,11 @@ include 'includes/header.php';
     .section-title {
         text-align: center;
         margin-bottom: 30px;
+        
     }
 
     .section-title h2 {
-        color: var(--text-color);
+        color: var(--primary-color);
         font-size: 2rem;
         margin-bottom: 10px;
     }
@@ -251,7 +252,8 @@ include 'includes/header.php';
     }
 
     #searchForm button {
-        background: linear-gradient(65deg, #007B7F ,rgb(18, 151, 153) );
+        background: linear-gradient(65deg,#F9A825 ,rgb(207, 185, 17) );
+        
         color: white;
         border: none;
         padding: 15px 30px;
@@ -332,9 +334,11 @@ include 'includes/header.php';
 
     .season-tab.active,
     .season-tab:hover {
-        background: linear-gradient(65deg, #007B7F ,rgb(18, 151, 153) );
+        background: linear-gradient(65deg,#F9A825 ,rgb(207, 185, 17) );
         color: white;
     }
+
+    
 
     .season-card {
         display: none;

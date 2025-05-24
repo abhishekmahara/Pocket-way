@@ -43,7 +43,9 @@ include __DIR__ . '/../config.php';
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 
-<footer style="background: linear-gradient(65deg, #007B7F ,rgb(1, 204, 207) );
+   
+    
+<footer style="background: linear-gradient(135deg, #006366,rgb(56, 132, 125));";
 " class="text-white pt-5 pb-4">
   <div class="container">
     <div class="row text-center text-md-start">

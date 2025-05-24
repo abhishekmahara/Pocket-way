@@ -45,9 +45,16 @@ try {
       font-size: 1.2rem;
     }
 
+    
     .form-select2 {
-      max-width: 300px;
+      max-width: auto;
       
+    }
+
+    .hero button{
+    background: linear-gradient(65deg,#F9A825 ,rgb(207, 185, 17) );
+    color:white;
+    border:none;
     }
 
     .select2-container .select2-selection--single {
@@ -59,6 +66,8 @@ try {
       border: 1px solid #ccc;
       border-radius: 5px;
     }
+
+
 
     section {
       padding: 60px 0;
@@ -74,7 +83,7 @@ try {
 
     .read-more {    /* Read More Button  */
     padding: 10px 20px;
-    background-color: #F9A825;
+    background: linear-gradient(65deg,#F9A825 ,rgb(207, 185, 17) );
     text-decoration: none;
     border-radius: 5px;
     display: inline-block;
@@ -218,7 +227,7 @@ try {
 
   <!-- Travel Articles -->
 
-<section class="py-5" style="background-color: #f4f6f8;">
+<section  id="travel-tips" class="py-5" style="background-color: #f4f6f8;">
     <div class="container">
         <h2 class="section-title text-center mb-5">Travel Tips & Articles</h2>
         <div class="row g-4">
