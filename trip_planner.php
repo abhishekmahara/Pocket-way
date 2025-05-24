@@ -68,11 +68,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax'])) {
                     $lines = explode("\n", trim($item));
                     $title = trim(str_replace(['1.', '2.', '3.', '4.', '5.'], '', $lines[0]));
                     array_shift($lines);  // Remove the title line
-                    $description = implode("\n", $lines);
-                    $destinations[] = [
-                        'title' => $title,
-                        'description' => trim($description)
-                    ];
+                    $description = implode(" ", array_map('trim', $lines));
+                    if (!empty($title) && !empty($description)) {
+                        $destinations[] = [
+                            'title' => $title,
+                            'description' => $description
+                        ];
+                    }
                 }
             }
             
@@ -266,27 +268,35 @@ include 'includes/header.php';
 
     /* Destinations Grid */
     .destinations-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
         margin-top: 30px;
         padding: 20px;
     }
 
     .destination-content {
-        padding: 15px 0;
-        border-bottom: 1px solid #eee;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .destination-content:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
     .destination-title {
-        color: var(--text-color);
+        color: var(--primary-color);
         font-size: 1.4rem;
         font-weight: 600;
-        margin: 0 0 12px 0;
+        margin-bottom: 0.75rem;
     }
 
     .destination-desc {
-        color: var(--muted-text);
+        color: var(--text-color);
         margin: 0;
         line-height: 1.6;
         font-size: 1.1rem;
@@ -524,28 +534,13 @@ document.addEventListener('DOMContentLoaded', function() {
             return { intro: '', destinations: [] };
         }
 
-        const firstItem = data.destinations[0];
-        let intro = '';
-        let destinations = data.destinations;
-
-        if (typeof firstItem === 'string') {
-            const introMatch = firstItem.match(/^(Okay,.*?:)\s*([\s\S]*)$/);
-            if (introMatch) {
-                intro = introMatch[1];
-                const remainingText = introMatch[2];
-                destinations = remainingText.split(/\d+\.\s+/)
-                    .filter(item => item.trim())
-                    .map(item => {
-                        const lines = item.split('\n').filter(line => line.trim());
-                        const title = cleanText(lines[0] || '');
-                        const description = cleanText(lines.slice(1).join('\n'));
-                        return { title, description };
-                    })
-                    .filter(item => item.title && item.description);
-            }
-        }
-
-        return { intro, destinations };
+        return {
+            intro: '',
+            destinations: data.destinations.map(dest => ({
+                title: cleanText(dest.title),
+                description: cleanText(dest.description)
+            }))
+        };
     }
 
     form.addEventListener('submit', function(e) {
@@ -570,17 +565,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p style="color: #dc3545;">${data.error}</p>
                     </div>`;
             } else {
-                const { intro, destinations } = extractIntroAndDestinations(data);
-                
-                if (intro) {
-                    introText.textContent = cleanText(intro);
-                    introText.style.display = 'block';
-                }
-
+                const { destinations } = extractIntroAndDestinations(data);
                 destinationsGrid.innerHTML = destinations.map(dest => `
                     <div class="destination-content">
-                        <h3 class="destination-title">${cleanText(dest.title)}</h3>
-                        <p class="destination-desc">${cleanText(dest.description)}</p>
+                        <h3 class="destination-title">${dest.title}</h3>
+                        <p class="destination-desc">${dest.description}</p>
                     </div>
                 `).join('');
             }
