@@ -1,12 +1,12 @@
 <?php
-require_once '../includes/auth-check.php';
-require_once '../includes/db-config.php';
-require_once '../includes/admin-header.php';
+require_once '../../includes/auth-check.php';
+require_once '../../includes/db-config.php';
+require_once '../../includes/admin-header.php';
 
 $error = '';
 $success = '';
 
-// Fetch all route stations with route info
+// Fetch all stations with route info
 try {
     $stmt = $pdo->query("
         SELECT rs.*, mr.source, mr.destination
@@ -32,6 +32,9 @@ try {
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-map-marker-alt"></i> All Stations
+            <a href="add.php" class="btn btn-primary float-end">
+                <i class="fas fa-plus"></i> Add New Station
+            </a>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-striped">
@@ -41,7 +44,8 @@ try {
                         <th>Route (Source ➜ Destination)</th>
                         <th>Station Name</th>
                         <th>Sequence</th>
-                        <th>Stop Time</th>
+                        <th>Arrival Time</th>
+                        <th>Departure Time</th>
                         <th>Distance From Start (km)</th>
                         <th>Actions</th>
                     </tr>
@@ -54,21 +58,21 @@ try {
                                 <td><?php echo htmlspecialchars($station['source']) . " ➜ " . htmlspecialchars($station['destination']); ?></td>
                                 <td><?php echo htmlspecialchars($station['station_name']); ?></td>
                                 <td><?php echo htmlspecialchars($station['sequence_number']); ?></td>
-                                <td><?php echo isset($station['stop_time']) ? htmlspecialchars($station['stop_time']) : '—'; ?></td>
-                                <td><?php echo isset($station['distance_from_start']) ? htmlspecialchars($station['distance_from_start']) : '—'; ?></td>
-
+                                <td><?php echo isset($station['arrival_time']) ? htmlspecialchars($station['arrival_time']) : '—'; ?></td>
+                                <td><?php echo isset($station['departure_time']) ? htmlspecialchars($station['departure_time']) : '—'; ?></td>
+                                <td><?php echo isset($station['distance_from_source']) ? htmlspecialchars($station['distance_from_source']) : '—'; ?></td>
                                 <td>
-                                    <a href="edit-station.php?station_id=<?php echo $station['station_id']; ?>" class="btn btn-sm btn-warning">
+                                    <a href="edit.php?station_id=<?php echo $station['station_id']; ?>" class="btn btn-sm btn-warning">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <a href="delete-station.php?station_id=<?php echo $station['station_id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this station?');">
+                                    <a href="delete.php?station_id=<?php echo $station['station_id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this station?');">
                                         <i class="fas fa-trash"></i> Delete
                                     </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <tr><td colspan="7" class="text-center">No stations found.</td></tr>
+                        <tr><td colspan="8" class="text-center">No stations found.</td></tr>
                     <?php endif; ?>
                 </tbody>
             </table>
@@ -76,4 +80,4 @@ try {
     </div>
 </div>
 
-<?php require_once '../includes/admin-footer.php'; ?>
+<?php require_once '../../includes/admin-footer.php'; ?> 

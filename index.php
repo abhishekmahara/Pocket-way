@@ -11,7 +11,7 @@ try {
 }
 ?>
 
-<main>
+ <main>
     <style>
     :root {
       --primary-color: #007B7F;
@@ -103,26 +103,26 @@ try {
       <h1>Explore Uttarakhand the Smart way</h1>
       <p>Plan your journey with affordable public transport.</p>
       <form class="row justify-content-center" method="GET" action="search_routes.php">
-        <div class="col-md-3">
+  <div class="col-md-3">
           <select class="form-select2 form-control" id="from" name="from" required>
-            <option value="">From</option>
+      <option value="">From</option>
             <?php foreach ($sources as $source): ?>
               <option value="<?= htmlspecialchars($source) ?>"><?= htmlspecialchars($source) ?></option>
             <?php endforeach; ?>
-          </select>
-        </div>
-        <div class="col-md-3">
+    </select>
+  </div>
+  <div class="col-md-3">
           <select class="form-select2 form-control" id="to" name="to" required>
-            <option value="">To</option>
+      <option value="">To</option>
             <?php foreach ($destinations as $destination): ?>
               <option value="<?= htmlspecialchars($destination) ?>"><?= htmlspecialchars($destination) ?></option>
             <?php endforeach; ?>
-          </select>
-        </div>
-        <div class="col-md-2">
-          <button class="btn btn-warning w-100" type="submit">Search</button>
-        </div>
-      </form>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-warning w-100" type="submit">Search</button>
+  </div>
+</form>
     </div>
   </section>
 

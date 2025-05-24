@@ -204,7 +204,7 @@ try {
                         <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="stat-label">Total Stations</div>
                         <div class="stat-value"><?php echo number_format($totalStations); ?></div>
-                        <a href="station.php" class="stat-link mt-auto">Manage <i class="fas fa-arrow-right"></i></a>
+                        <a href="stations/manage.php" class="stat-link mt-auto">Manage <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -239,7 +239,7 @@ try {
                     </a>
                 </div>
                 <div class="col-md-3 col-6">
-                    <a href="station.php" class="action-card">
+                    <a href="stations/manage.php" class="action-card">
                         <div class="action-icon secondary"><i class="fas fa-map-marked-alt"></i></div>
                         <h3 class="h6 mb-1">Stations</h3>
                         <p class="mb-0 small">Manage all bus stations in the system.</p>

@@ -44,6 +44,7 @@ if (session_status() === PHP_SESSION_NONE) {
     </style>
 </head>
 <body>
+    <div class="admin-wrapper d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="/admin/dashboard.php">
