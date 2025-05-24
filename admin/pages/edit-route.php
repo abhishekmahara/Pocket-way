@@ -13,28 +13,55 @@ $buses = [];
 $contacts = [];
 
 // Verify route exists and fetch initial data
-try {
-    $stmt = $pdo->prepare("SELECT * FROM main_routes WHERE route_id = ?");
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM main_routes WHERE route_id = ?");
     $stmt->execute([$route_id]);
-    $route = $stmt->fetch(PDO::FETCH_ASSOC);
+        $route = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$route) {
+        if (!$route) {
         header("Location: manage-routes.php");
         exit;
     }
 
-    // Fetch stations
-    $stmt = $pdo->prepare("SELECT * FROM route_stations WHERE route_id = ? ORDER BY sequence_number ASC");
+    // Fetch stations with proper ordering and their fares in one query
+    $stmt = $pdo->prepare("
+        SELECT DISTINCT 
+            rs.*,
+            rf.fare_amount
+        FROM route_stations rs
+        LEFT JOIN route_fares rf ON 
+            rs.route_id = rf.route_id AND 
+            rs.station_id = rf.to_station_id
+        WHERE rs.route_id = ?
+        GROUP BY rs.station_id
+        ORDER BY rs.sequence_number ASC
+    ");
     $stmt->execute([$route_id]);
     $stations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Fetch fares for each station
-    foreach ($stations as &$station) {
-        $stmt = $pdo->prepare("SELECT fare_amount FROM route_fares WHERE route_id = ? AND from_station_id = ?");
-        $stmt->execute([$route_id, $station['station_id']]);
-        $fare = $stmt->fetch(PDO::FETCH_ASSOC);
-        $station['fare'] = $fare ? $fare['fare_amount'] : null;
+    // Ensure unique sequence numbers and proper fare assignment
+    $unique_stations = [];
+    $used_sequences = [];
+    foreach ($stations as $station) {
+        if (!in_array($station['sequence_number'], $used_sequences)) {
+            $unique_stations[] = [
+                'station_id' => $station['station_id'],
+                'route_id' => $station['route_id'],
+                'station_name' => $station['station_name'],
+                'sequence_number' => $station['sequence_number'],
+                'distance_from_prev' => $station['distance_from_prev'],
+                'distance_from_source' => $station['distance_from_source'],
+                'arrival_time' => $station['arrival_time'],
+                'departure_time' => $station['departure_time'],
+                'facilities' => $station['facilities'],
+                'latitude' => $station['latitude'],
+                'longitude' => $station['longitude'],
+                'fare' => $station['fare_amount']
+            ];
+            $used_sequences[] = $station['sequence_number'];
+        }
     }
+    $stations = $unique_stations;
 
     // Fetch buses
     $stmt = $pdo->prepare("SELECT * FROM bus_services WHERE route_id = ?");
@@ -122,19 +149,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Handle stations update
         if (isset($_POST['station_name']) && is_array($_POST['station_name'])) {
-            // Get existing stations
-            $stmt = $pdo->prepare("SELECT station_id, station_name FROM route_stations WHERE route_id = ?");
+            // Get existing stations with their IDs
+            $stmt = $pdo->prepare("SELECT station_id, station_name, sequence_number FROM route_stations WHERE route_id = ?");
             $stmt->execute([$route_id]);
-            $existing_stations = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+            $existing_stations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Create a map of existing stations by sequence number
+            $existing_stations_map = [];
+            foreach ($existing_stations as $station) {
+                $existing_stations_map[$station['sequence_number']] = $station;
+            }
+
+            // First, delete all existing fares for this route
+            $pdo->prepare("DELETE FROM route_fares WHERE route_id = ?")->execute([$route_id]);
+
+            // Get the source station ID (sequence number 1)
+            $source_station_id = null;
+            foreach ($existing_stations as $station) {
+                if ($station['sequence_number'] == 1) {
+                    $source_station_id = $station['station_id'];
+                    break;
+                }
+            }
 
             $stmt = $pdo->prepare("INSERT INTO route_stations (route_id, station_name, sequence_number, 
                 distance_from_prev, distance_from_source, arrival_time, departure_time, 
                 facilities, latitude, longitude) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            $prev_station_id = null;
             $processed_stations = [];
             $sequence_numbers = [];
+            $updated_station_ids = [];
+            $station_sequence_map = [];
 
             foreach ($_POST['station_name'] as $i => $station_name) {
                 if (empty($station_name)) continue;
@@ -143,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (in_array($station_name, $processed_stations)) continue;
                 $processed_stations[] = $station_name;
 
-                // Validate sequence number
+                // Get sequence number
                 $seq_num = $_POST['sequence_number'][$i] ?? ($i + 1);
                 if (in_array($seq_num, $sequence_numbers)) {
                     throw new Exception("Duplicate sequence numbers are not allowed");
@@ -161,11 +207,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     throw new Exception("Arrival time must be before departure time for station " . $station_name);
                 }
 
-                // Check if station exists
-                $station_id = array_search($station_name, $existing_stations);
-                if ($station_id) {
+                // Check if station exists at this sequence number
+                if (isset($existing_stations_map[$seq_num])) {
                     // Update existing station
+                    $station_id = $existing_stations_map[$seq_num]['station_id'];
                     $update_stmt = $pdo->prepare("UPDATE route_stations SET 
+                        station_name = ?,
                         sequence_number = ?, 
                         distance_from_prev = ?, 
                         distance_from_source = ?, 
@@ -177,6 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         WHERE station_id = ?");
                     
                     $update_stmt->execute([
+                        filter_var($station_name, FILTER_SANITIZE_STRING),
                         $seq_num,
                         !empty($_POST['distance_from_prev'][$i]) ? floatval($_POST['distance_from_prev'][$i]) : null,
                         !empty($_POST['distance_from_source'][$i]) ? floatval($_POST['distance_from_source'][$i]) : null,
@@ -189,6 +237,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ]);
                     
                     $current_station_id = $station_id;
+                    $updated_station_ids[] = $station_id;
                 } else {
                     // Insert new station
                     $stmt->execute([
@@ -205,31 +254,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ]);
                     
                     $current_station_id = $pdo->lastInsertId();
+                    $updated_station_ids[] = $current_station_id;
                 }
 
-                // Insert fare if valid
-                if (!empty($_POST['fare'][$i]) && floatval($_POST['fare'][$i]) < 10000) {
-                    // Delete existing fare for this station pair
-                    $pdo->prepare("DELETE FROM route_fares WHERE route_id = ? AND from_station_id = ? AND to_station_id = ?")
-                        ->execute([$route_id, $prev_station_id, $current_station_id]);
-                    
+                // Store station ID with its sequence number
+                $station_sequence_map[$seq_num] = $current_station_id;
+
+                // Handle fares - only for non-source stations
+                if (!empty($_POST['fare'][$i]) && floatval($_POST['fare'][$i]) > 0 && $seq_num > 1) {
                     $stmt_fare = $pdo->prepare("INSERT INTO route_fares (route_id, from_station_id, to_station_id, fare_amount) 
                                               VALUES (?, ?, ?, ?)");
                     $stmt_fare->execute([
                         $route_id,
-                        $prev_station_id,
+                        $source_station_id, // Always use source station as from_station_id
                         $current_station_id,
                         floatval($_POST['fare'][$i])
                     ]);
                 }
-
-                $prev_station_id = $current_station_id;
             }
 
-            // Delete stations that are no longer in the list
-            $placeholders = str_repeat('?,', count($processed_stations) - 1) . '?';
-            $pdo->prepare("DELETE FROM route_stations WHERE route_id = ? AND station_name NOT IN ($placeholders)")
-                ->execute(array_merge([$route_id], $processed_stations));
+            // Delete stations that were not updated
+            if (!empty($updated_station_ids)) {
+                $placeholders = str_repeat('?,', count($updated_station_ids) - 1) . '?';
+                $pdo->prepare("DELETE FROM route_stations WHERE route_id = ? AND station_id NOT IN ($placeholders)")
+                    ->execute(array_merge([$route_id], $updated_station_ids));
+            }
         }
 
         // Handle bus services update
@@ -347,12 +396,12 @@ function addStationRow() {
             <div class="col-md-2">
                 <label class="form-label">Fare (₹)</label>
                 <input type="number" step="0.01" class="form-control" name="fare[]">
-            </div>
+                        </div>
             <div class="col-md-2">
                 <label class="form-label">Arrival Time</label>
                 <input type="time" class="form-control" name="arrival_time[]">
-            </div>
-        </div>
+                        </div>
+                    </div>
         <div class="row mt-2">
             <div class="col-md-2">
                 <label class="form-label">Departure Time</label>
@@ -365,19 +414,19 @@ function addStationRow() {
             <div class="col-md-3">
                 <label class="form-label">Latitude</label>
                 <input type="number" step="0.00000001" class="form-control" name="latitude[]">
-            </div>
+                        </div>
             <div class="col-md-3">
                 <label class="form-label">Longitude</label>
                 <input type="number" step="0.00000001" class="form-control" name="longitude[]">
-            </div>
-        </div>
+                        </div>
+                    </div>
         <div class="row mt-2">
             <div class="col-md-2">
                 <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.station-row').remove()">
                     <i class="fas fa-trash"></i> Remove
                 </button>
-            </div>
-        </div>
+                        </div>
+                    </div>
     `;
     container.appendChild(row);
 }
@@ -415,15 +464,15 @@ function addBusRow() {
             <div class="col-md-2">
                 <label class="form-label">Operating Days</label>
                 <input type="text" class="form-control" name="operating_days[]">
-            </div>
-        </div>
+                        </div>
+                    </div>
         <div class="row mt-2">
             <div class="col-md-2">
                 <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.bus-row').remove()">
                     <i class="fas fa-trash"></i> Remove
                 </button>
-            </div>
-        </div>
+                        </div>
+                    </div>
     `;
     container.appendChild(row);
 }
@@ -449,7 +498,7 @@ function addContactRow() {
             <div class="col-md-2">
                 <label class="form-label">Station ID</label>
                 <input type="number" class="form-control" name="contact_station_id[]">
-            </div>
+                </div>
             <div class="col-md-1 d-flex align-items-end">
                 <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.contact-row').remove()">
                     <i class="fas fa-trash"></i>

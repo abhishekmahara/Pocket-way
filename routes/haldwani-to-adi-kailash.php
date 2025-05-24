@@ -16,16 +16,42 @@ try {
         throw new Exception("Route not found");
     }
 
+    // First get the source station ID
+    $stmt = $pdo->prepare("
+        SELECT station_id 
+        FROM route_stations 
+        WHERE route_id = ? 
+        AND sequence_number = 1
+    ");
+    $stmt->execute([$route['route_id']]);
+    $source_station = $stmt->fetch(PDO::FETCH_ASSOC);
+    $source_station_id = $source_station['station_id'];
+
     // Fetch stations with detailed information
     $stmt = $pdo->prepare("
-        SELECT rs.*, rf.fare_amount 
+        SELECT 
+            rs.*,
+            (
+                SELECT fare_amount 
+                FROM route_fares 
+                WHERE route_id = rs.route_id 
+                AND from_station_id = ? 
+                AND to_station_id = rs.station_id
+                LIMIT 1
+            ) as fare_from_source
         FROM route_stations rs 
-        LEFT JOIN route_fares rf ON rs.station_id = rf.from_station_id 
         WHERE rs.route_id = ? 
         ORDER BY rs.sequence_number
     ");
-    $stmt->execute([$route['route_id']]);
+    $stmt->execute([$source_station_id, $route['route_id']]);
     $stations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Debug information
+    error_log("Source Station ID: " . $source_station_id);
+    error_log("Number of stations: " . count($stations));
+    foreach ($stations as $station) {
+        error_log("Station: " . $station['station_name'] . ", Fare: " . ($station['fare_from_source'] ?? 'null'));
+    }
 
     // Fetch bus services
     $stmt = $pdo->prepare("SELECT * FROM bus_services WHERE route_id = ?");
@@ -283,6 +309,12 @@ try {
                                                     <span class="badge bg-success">
                                                         <i class="fas fa-clock"></i> 
                                                         Departure: <?= htmlspecialchars($station['departure_time']) ?>
+                                                    </span>
+                                                <?php endif; ?>
+                                                <?php if ($station['fare_from_source'] && $station['sequence_number'] > 1): ?>
+                                                    <span class="badge bg-warning">
+                                                        <i class="fas fa-rupee-sign"></i> 
+                                                        Fare from Haldwani: ₹<?= number_format($station['fare_from_source'], 2) ?>
                                                     </span>
                                                 <?php endif; ?>
                                             </div>
@@ -552,10 +584,10 @@ try {
 </main>
 
 <style>
-:root {
+    :root {
     --primary-color: #006366;
     --secondary-color: #008B8B;
-    --accent-color: #F9A825;
+        --accent-color: #F9A825;
     --accent-hover: #FFB74D;
     --light-bg: #E0F7FA;
     --dark-bg: #004D4D;
@@ -1030,7 +1062,7 @@ try {
     display: flex;
     align-items: center;
     font-weight: 600;
-    color: var(--primary-color);
+        color: var(--primary-color);
 }
 
 .season-header i {
@@ -1161,7 +1193,7 @@ try {
 
 .tip-header i {
     font-size: 1.2rem;
-}
+    }
 </style>
 
 <script>

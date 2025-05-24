@@ -44,5 +44,6 @@
         $('.alert').delay(5000).fadeOut(500);
     });
 </script>
+</div>
 </body>
 </html>
