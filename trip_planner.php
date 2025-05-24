@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax'])) {
                 'parts' => [
                     [
                         'text' => "Suggest 5 travel destinations in Uttarakhand, India that match the preference: '$preference'. For each destination, provide the following in a structured way:
-        1. Name of the destination
+        1. Name
         2. A brief 2-3 sentence description of why it matches the preference"
                     ]
                 ]
