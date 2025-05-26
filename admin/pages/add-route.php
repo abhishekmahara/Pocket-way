@@ -40,8 +40,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $upload_path = $upload_dir . $new_filename;
 
                 if (move_uploaded_file($_FILES['route_map']['tmp_name'], $upload_path)) {
+                    $relative_path = 'uploads/route_maps/' . $new_filename;
                     $stmt = $pdo->prepare("UPDATE main_routes SET route_map_url = ? WHERE route_id = ?");
-                    $stmt->execute(['uploads/route_maps/' . $new_filename, $route_id]);
+                    $stmt->execute([$relative_path, $route_id]);
+
+                    // Insert into route_media as well
+                    $stmt = $pdo->prepare("INSERT INTO route_media (route_id, media_type, file_url, caption) VALUES (?, ?, ?, ?)");
+                    $stmt->execute([
+                        $route_id,
+                        'Map',
+                        $relative_path,
+                        'Route Map'
+                    ]);
                 }
             }
         }

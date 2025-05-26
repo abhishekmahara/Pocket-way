@@ -5,13 +5,21 @@ include 'includes/header.php';
 $from = $_GET['from'] ?? '';
 $to = $_GET['to'] ?? '';
 
-// Special case for Haldwani to Adi Kailash route
-if (strtolower($from) === 'haldwani' && strtolower($to) === 'adi kailash') {
-    header('Location: routes/haldwani-to-adi-kailash.php');
-    exit;
-}
-
 try {
+    // Find the route and its slug
+    $stmt = $pdo->prepare("SELECT slug FROM main_routes WHERE LOWER(source) = LOWER(?) AND LOWER(destination) = LOWER(?) AND is_active = 1 LIMIT 1");
+    $stmt->execute([$from, $to]);
+    $route = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($route && !empty($route['slug'])) {
+        $slug = $route['slug'];
+        // Check if the file exists before redirecting
+        if (file_exists(__DIR__ . '/routes/' . $slug . '.php')) {
+            header('Location: routes/' . $slug . '.php');
+            exit;
+        }
+    }
+
     // Get matching routes
     $stmt = $pdo->prepare("
         SELECT r.*, 

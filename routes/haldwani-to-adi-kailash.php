@@ -109,7 +109,6 @@ try {
                     <div class="col-md-4">
                         <?php if ($route['route_map_url']): ?>
                             <?php
-                            // Ensure the path starts with /Pocket-way/
                             $image_path = $route['route_map_url'];
                             if (!str_starts_with($image_path, '/Pocket-way/')) {
                                 $image_path = '/Pocket-way/' . ltrim($image_path, '/');
@@ -118,10 +117,10 @@ try {
                             <img src="<?= htmlspecialchars($image_path) ?>" 
                                  alt="Route Map" 
                                  class="img-fluid rounded shadow"
-                                 onerror="console.log('Failed to load: <?= htmlspecialchars($image_path) ?>')">
+                                 onerror="this.onerror=null; this.src='/Pocket-way/assets/images/no-image.jpg'; console.log('Failed to load: <?= htmlspecialchars($image_path) ?>')">
                         <?php else: ?>
                             <div class="alert alert-info">
-                                No route map available
+                                <i class="fas fa-info-circle"></i> No route map available
                             </div>
                         <?php endif; ?>
                     </div>

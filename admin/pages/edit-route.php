@@ -121,29 +121,95 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Handle route map upload
         if (isset($_FILES['route_map']) && $_FILES['route_map']['error'] === UPLOAD_ERR_OK) {
-            $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
-            $max_size = 5 * 1024 * 1024; // 5MB
-            
-            if (!in_array($_FILES['route_map']['type'], $allowed_types)) {
-                throw new Exception("Invalid file type. Please upload JPG, PNG, or GIF");
-            }
-            
-            if ($_FILES['route_map']['size'] > $max_size) {
-                throw new Exception("File size exceeds 5MB limit");
-            }
+            try {
+                $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+                $max_size = 5 * 1024 * 1024; // 5MB
+                
+                // Validate file type
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $mime_type = finfo_file($finfo, $_FILES['route_map']['tmp_name']);
+                finfo_close($finfo);
+                
+                if (!in_array($mime_type, $allowed_types)) {
+                    throw new Exception("Invalid file type. Please upload JPG, PNG, or GIF. Detected type: " . $mime_type);
+                }
+                
+                if ($_FILES['route_map']['size'] > $max_size) {
+                    throw new Exception("File size exceeds 5MB limit");
+                }
 
-            $upload_dir = '../uploads/route_maps/';
-            if (!file_exists($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
-            }
+                // Create upload directory if it doesn't exist
+                $base_dir = dirname(dirname(__FILE__)); // Get the admin directory
+                $upload_dir = $base_dir . '/uploads/route_maps/';
+                
+                // Create directories recursively with proper permissions
+                if (!file_exists($upload_dir)) {
+                    // First ensure parent directory exists
+                    $parent_dir = dirname($upload_dir);
+                    if (!file_exists($parent_dir)) {
+                        if (!@mkdir($parent_dir, 0775, true)) {
+                            $error = error_get_last();
+                            throw new Exception("Failed to create parent directory. Error: " . ($error ? $error['message'] : 'Unknown error'));
+                        }
+                    }
+                    
+                    // Then create the route_maps directory
+                    if (!@mkdir($upload_dir, 0775, true)) {
+                        $error = error_get_last();
+                        throw new Exception("Failed to create upload directory. Error: " . ($error ? $error['message'] : 'Unknown error'));
+                    }
+                }
+                
+                // Verify directory is writable
+                if (!is_writable($upload_dir)) {
+                    throw new Exception("Upload directory is not writable. Path: " . $upload_dir);
+                }
 
-            $file_extension = pathinfo($_FILES['route_map']['name'], PATHINFO_EXTENSION);
-            $new_filename = 'route_' . $route_id . '_' . time() . '.' . $file_extension;
-            $upload_path = $upload_dir . $new_filename;
+                // Generate unique filename
+                $file_extension = strtolower(pathinfo($_FILES['route_map']['name'], PATHINFO_EXTENSION));
+                $new_filename = 'route_' . $route_id . '_' . time() . '.' . $file_extension;
+                $upload_path = $upload_dir . $new_filename;
 
-            if (move_uploaded_file($_FILES['route_map']['tmp_name'], $upload_path)) {
+                // Delete old file if exists
+                if (!empty($route['route_map_url'])) {
+                    $old_file = $base_dir . '/' . $route['route_map_url'];
+                    if (file_exists($old_file)) {
+                        @unlink($old_file);
+                    }
+                }
+
+                // Move uploaded file
+                if (!@move_uploaded_file($_FILES['route_map']['tmp_name'], $upload_path)) {
+                    $error = error_get_last();
+                    throw new Exception("Failed to move uploaded file. Path: " . $upload_path . ". Error: " . ($error ? $error['message'] : 'Unknown error'));
+                }
+
+                // Update database with new file path
+                $relative_path = 'uploads/route_maps/' . $new_filename;
                 $stmt = $pdo->prepare("UPDATE main_routes SET route_map_url = ? WHERE route_id = ?");
-                $stmt->execute(['uploads/route_maps/' . $new_filename, $route_id]);
+                $stmt->execute([$relative_path, $route_id]);
+
+                // Check if a 'Map' media already exists for this route
+                $stmt = $pdo->prepare("SELECT media_id FROM route_media WHERE route_id = ? AND media_type = 'Map'");
+                $stmt->execute([$route_id]);
+                $existing = $stmt->fetch();
+
+                if ($existing) {
+                    // Update existing
+                    $stmt = $pdo->prepare("UPDATE route_media SET file_url = ?, caption = ? WHERE media_id = ?");
+                    $stmt->execute([$relative_path, 'Route Map', $existing['media_id']]);
+                } else {
+                    // Insert new
+                    $stmt = $pdo->prepare("INSERT INTO route_media (route_id, media_type, file_url, caption) VALUES (?, ?, ?, ?)");
+                    $stmt->execute([$route_id, 'Map', $relative_path, 'Route Map']);
+                }
+                
+                // Log success
+                error_log("File uploaded successfully: " . $relative_path);
+                
+            } catch (Exception $e) {
+                error_log("File upload error: " . $e->getMessage());
+                throw new Exception("Failed to upload image: " . $e->getMessage());
             }
         }
 
