@@ -24,7 +24,7 @@ if (isset($_SESSION['error_message'])) {
 
 // Handle route deletion
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
-    try {
+try {
         $route_id = (int)$_GET['delete'];
         
         // Start transaction
@@ -245,7 +245,7 @@ try {
 </style>
 
 <div class="manage-routes-bg">
-    <div class="container-fluid px-4">
+<div class="container-fluid px-4">
         <div class="page-header d-flex justify-content-between align-items-center">
             <div>
                 <h1>Manage Routes</h1>
@@ -287,8 +287,8 @@ try {
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table">
-                        <thead>
-                            <tr>
+                <thead>
+                    <tr>
                                 <th>Route</th>
                                 <th>Stations</th>
                                 <th>Distance</th>
@@ -296,13 +296,13 @@ try {
                                 <th>Buses</th>
                                 <th>Status</th>
                                 <th>Map</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (!empty($routes)): ?>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($routes)): ?>
                                 <?php foreach($routes as $route): ?>
-                                    <tr>
+                            <tr>
                                         <td>
                                             <strong><?= htmlspecialchars($route['source']) ?> → <?= htmlspecialchars($route['destination']) ?></strong>
                                         </td>
@@ -333,28 +333,28 @@ try {
                                         <td class="action-buttons">
                                             <a href="edit-route.php?id=<?= $route['route_id'] ?>" 
                                                class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
                                             <a href="manage-routes.php?delete=<?= $route['route_id'] ?>" 
                                                class="btn btn-danger btn-sm" 
                                                onclick="return confirm('Are you sure you want to delete this route? This action cannot be undone.')">
-                                                <i class="fas fa-trash"></i> Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
                                     <td colspan="8" class="text-center py-4">
                                         <div class="text-muted">
                                             <i class="fas fa-route fa-2x mb-3"></i>
                                             <p>No routes found. Click "Add New Route" to create one.</p>
                                         </div>
                                     </td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
                 </div>
             </div>
         </div>

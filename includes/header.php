@@ -10,6 +10,8 @@ include __DIR__ . '/../config.php';
   <title>Smart Travel - Public Transport Guide</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <!-- Add Lightbox CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
   <style>
     body {
       
@@ -72,6 +74,10 @@ include __DIR__ . '/../config.php';
 
 <!-- Bootstrap Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Add jQuery (required for lightbox) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Add Lightbox JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 
 </body>
 </html>
