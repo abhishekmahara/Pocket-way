@@ -59,7 +59,7 @@ include __DIR__ . '/../config.php';
           <a class="nav-link text-white fs-5 px-3" href="<?php echo $base_url; ?>trip_planner.php">Trip Planner</a>
         </li>
         <li class="nav-item"> 
-         <a class="nav-link text-white fs-5 px-3" href="<?php echo $base_url; ?>#travel-tips">Travel Tips</a>
+         <a class="nav-link text-white fs-5 px-3 " href="<?php echo $base_url; ?>#travel-tips">Travel Tips</a>
         </li>
 
         <li class="nav-item">

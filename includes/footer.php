@@ -63,9 +63,11 @@ include __DIR__ . '/../config.php';
       <div class="col-md-4 mb-4">
         <h6 class="text-uppercase fw-bold mb-3">Quick Links</h6>
         <ul class="list-unstyled">
-          <li><a href="#" class="footer-link">Home</a></li>
-          <li><a href="#trip-planner" class="footer-link">Trip Planner</a></li>
-          <li><a href="#contact" class="footer-link">About Us</a></li>
+          <li>
+          <a class="nav-link text-white fs-7 px-3" href="<?php echo $base_url; ?>index.php">Home</a>
+          </li>
+          <li> <a class="nav-link text-white fs-7 px-3" href="<?php echo $base_url; ?>trip_planner.php">Trip Planner</a></li>
+          <li><a class="nav-link text-white fs-7 px-3" href="<?php echo $base_url; ?>about us.php">About Us</a></li>
         </ul>
       </div>
 
@@ -73,7 +75,10 @@ include __DIR__ . '/../config.php';
       <div class="col-md-4 mb-4">
         <h6 class="text-uppercase fw-bold mb-3">Contact Us</h6>
         <p>Email: <a href="mailto:support@pocketway.in" class="footer-link">support@pocketway.in</a></p>
-        <p>Phone: +91 98765 43210</p>
+        <p>Members: <br>
+          Abhishek Mahara <br>
+          Amit Bahuguna  <br>Yogita Bisht <br> Akansha Khanka
+        </p>
         <div class="mt-3 d-flex justify-content-center justify-content-md-start gap-3">
           <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
           <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
