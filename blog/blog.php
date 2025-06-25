@@ -200,12 +200,12 @@
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="assets/img/harsil.jpg" class="d-block w-100" alt="Harsil Landscape">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="d-block w-100" alt="Harsil Landscape">
           </div>
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="assets/img/Valley-off-flowers.jpeg" class="d-block w-100" alt="Harsil River">
+            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" class="d-block w-100" alt="Harsil River">
           </div>
         </div>
       </div>
@@ -299,7 +299,7 @@
         </div>
         <div class="carousel-item">
           <div class="image-container">
-            <img src="../assets/img/munsiyari3.jpg" class="d-block w-100" alt="Munsiyari Village">
+            <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80" class="d-block w-100" alt="Panchachuli Peaks, Munsiyari">
           </div>
         </div>
       </div>

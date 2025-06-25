@@ -140,23 +140,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Create upload directory if it doesn't exist
                 $base_dir = dirname(dirname(__FILE__)); // Get the admin directory
-                $upload_dir = $base_dir . '/uploads/route_maps/';
+                $project_root = dirname($base_dir); // /Applications/XAMPP/xamppfiles/htdocs/pocket-way
+                $upload_dir = $project_root . '/uploads/route_maps/';
                 
                 // Create directories recursively with proper permissions
                 if (!file_exists($upload_dir)) {
-                    // First ensure parent directory exists
                     $parent_dir = dirname($upload_dir);
                     if (!file_exists($parent_dir)) {
                         if (!@mkdir($parent_dir, 0775, true)) {
-                            $error = error_get_last();
-                            throw new Exception("Failed to create parent directory. Error: " . ($error ? $error['message'] : 'Unknown error'));
+                            // ERROR: Failed to create parent directory
                         }
                     }
-                    
-                    // Then create the route_maps directory
                     if (!@mkdir($upload_dir, 0775, true)) {
-                        $error = error_get_last();
-                        throw new Exception("Failed to create upload directory. Error: " . ($error ? $error['message'] : 'Unknown error'));
+                        // ERROR: Failed to create upload directory
                     }
                 }
                 
